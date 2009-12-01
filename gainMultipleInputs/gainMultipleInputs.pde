@@ -14,7 +14,7 @@ void setup()
 
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 1024);
-  myWobble = new WobbleInstrument(302, 1.0, 50.5, out);
+  myWobble = new WobbleInstrument(302, 1.0, 30.5, out);
   out.playNote(0.5, 6.1, myWobble);
 }
 
