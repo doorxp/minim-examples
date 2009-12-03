@@ -13,11 +13,13 @@ void setup()
   size(512, 200, P2D);
 
   minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 1024);
+  out = minim.getLineOut(Minim.STEREO, 1024);
   //myWobble = new WobbleInstrument( , 1.0, 3.5, out);
   //poop = 900;
-  out.playNote(0.5, 6.1, new WobbleInstrument( 900f, 1.0, 3.5, out) );
-  out.playNote(1.5, 4.1, new WobbleInstrument( 400f, 1.0, 4.5, out) );
+  out.playNote(0.0, 14.1, new WobbleInstrument( 432f, 0.6, 0.6, out) );
+  //out.playNote(1.0, 4.1, new WobbleInstrument( 400f, 0.6, 400.3, out) );
+  //out.playNote(1.6, 3.1, new WobbleInstrument( 323f, 0.6, 500.9, out) );
+  //out.playNote(2.2, 3.4, new WobbleInstrument( 431f, 0.6, 600.4, out) );
 }
 
 void draw()
