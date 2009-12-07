@@ -1,6 +1,6 @@
 class WobbleInstrument implements Instrument
 {
-  Oscil sineOsc, lFOOsc;
+  Oscil sineOsc, lFO1, lFO2, lFO3, lFO4;
   Gain  gainGate, gainLFO;
   AudioOutput out;
   
@@ -8,16 +8,17 @@ class WobbleInstrument implements Instrument
   {
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
-    lFOOsc = new Oscil(lFOFreq/2.0, 1000.0, Waves.Sine);
+    lFO1 = new Oscil(lFOFreq/2.0, frequency, Waves.Sine);
+    lFO2 = new Oscil(frequency/2.0, 1.0, Waves.Sine);
+    lFO3 = new Oscil(frequency/3.0, 100.0, Waves.Sine);
+    lFO4 = new Oscil(lFOFreq/4.0, 0.5, Waves.Sine);
     gainGate = new Gain(0);
     gainLFO = new Gain(1);
-    //gainLFO.setSampleRate(out.sampleRate());
     println("WobbleInstrument: about to patch");
-    //sineOsc.patch(gain.audio).patch(out);
-    //gainLFO.printInputs();
-    //lFOOsc.patch(gainLFO.amplitude);
-    //sineOsc.patch(gainGate.audio).patch(gainLFO.audio).patch(out);
-    lFOOsc.patch(sineOsc.frequencyIn);
+    lFO1.patch(sineOsc.frequency);
+    lFO2.patch(sineOsc.amplitude);
+    lFO3.patch(sineOsc.frequencyModulation);
+    lFO4.patch(sineOsc.amplitudeModulation);
     //sineOsc.patch(gainGate).patch(out);
     //lFOOsc.patch(sineOsc.frequencyIn);
     //lFOOsc.patch(gainLFO.amplitude);

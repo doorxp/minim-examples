@@ -14,12 +14,7 @@ void setup()
 
   minim = new Minim(this);
   out = minim.getLineOut(Minim.STEREO, 1024);
-  //myWobble = new WobbleInstrument( , 1.0, 3.5, out);
-  //poop = 900;
-  out.playNote(0.0, 14.1, new WobbleInstrument( 432f, 0.6, 0.6, out) );
-  //out.playNote(1.0, 4.1, new WobbleInstrument( 400f, 0.6, 400.3, out) );
-  //out.playNote(1.6, 3.1, new WobbleInstrument( 323f, 0.6, 500.9, out) );
-  //out.playNote(2.2, 3.4, new WobbleInstrument( 431f, 0.6, 600.4, out) );
+  out.playNote(0.3, 9.6, new WobbleInstrument( 880f, 0.5, 0.9, out) );
 }
 
 void draw()
