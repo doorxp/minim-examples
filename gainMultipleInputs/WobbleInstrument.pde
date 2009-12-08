@@ -17,6 +17,7 @@ class WobbleInstrument implements Instrument
     //gainLFO.printInputs();
     lFOOsc.patch(gainLFO.amplitude);
     //sineOsc.patch(gainGate.audio).patch(gainLFO.audio).patch(out);
+    lFOOsc.patch(sineOsc.frequencyModulation);
     sineOsc.patch(gainGate).patch(gainLFO).patch(out);
     //gainLFO.printInputs();
     //lFOOsc.patch(gain.amplitude);
