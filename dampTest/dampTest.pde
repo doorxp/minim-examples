@@ -14,42 +14,48 @@ int xDir;
 
 void setup()
 {
-  size(100, 100);
-
+  size(512, 200, P2D);
+  
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 2048);
-  mySine = new SineInstrument(115, 1.0, out);
+  mySine = new SineInstrument(115, 0.5, out);
   myOtherSine = new SineInstrument(220, 0.3, out);
 
-  out.playNote(0.05, 0.3, new SineInstrument(115, 1.0, out));
-  out.playNote(0.40, 0.3, new SineInstrument(115, 1.0, out));
-  //for(int i = 0; i < 16; i++)
-  //{
-  //  out.playNote(0.25 + i*0.5, 0.3, new SineInstrument(115, 1.0, out));
-  //  //out.playNote(i*0.5, 0.05, myOtherSine);
-  //}
-  
-  xa = 10;
-  xDir = 1;
+  //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
+  //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
+  for(int i = 0; i < 4; i++)
+  {
+    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
+    out.playNote(1.50 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
+    
+    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
+    out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
+    
+    //out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(0.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(1.0 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(1.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(1.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    
+    //out.playNote(i*0.5, 0.05, myOtherSine);
+  }
 }
 
 void draw()
 {
   background(0);
-  xa = xa + xDir;
-  if ( xa > width-1 )
+  stroke(255);
+  // draw the waveforms
+  for(int i = 0; i < out.bufferSize() - 1; i++)
   {
-    xDir = -1;
-    //out.playNote( 0, 0.1, mySine );
-  }
-  if ( xa < 1 )
-  {
-    xDir = 1;
-    //out.playNote( 0, 0.1, myOtherSine );
-  }
-  stroke( 255 );
-  line( xa, 0, xa, 100 );
-
+    float x1 = map(i, 0, out.bufferSize(), 0, width);
+    float x2 = map(i+1, 0, out.bufferSize(), 0, width);
+    line(x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
+    line(x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
+  }  
 }
 
 void mousePressed()

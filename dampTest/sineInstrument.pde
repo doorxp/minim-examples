@@ -10,14 +10,15 @@ class SineInstrument implements Instrument
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
     gain = new Gain(0);
-    damp = new Damp(0.2);
-    sineOsc.patch(damp).patch(gain).patch(out);
+    damp = new Damp(0.3);
+    sineOsc.patch(damp).patch(out);
   }
   
   void noteOn()
   {
     //println("Note on!");
     gain.setValue(1);
+    damp.activate();
   }
   
   void noteOff()
