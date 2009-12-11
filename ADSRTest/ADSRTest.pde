@@ -25,20 +25,20 @@ void setup()
   //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
   for(int i = 0; i < 4; i++)
   {
-    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
-    out.playNote(1.50 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
+    out.playNote(1.25 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
+    out.playNote(2.50 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
     
-    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
     out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
+    out.playNote(2.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
     
     //out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
-    out.playNote(0.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
-    out.playNote(1.0 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
     out.playNote(1.25 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
-    out.playNote(1.5 + i*2.0, 0.3, new SineInstrument(5550, 0.1, out));
+    out.playNote(1.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
     out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
+    out.playNote(2.0 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
+    out.playNote(2.25 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
+    out.playNote(2.5 + i*2.0, 0.3, new SineInstrument(5550, 0.1, out));
+    out.playNote(2.75 + i*2.0, 0.3, new SineInstrument(3750, 0.1, out));
     
     //out.playNote(i*0.5, 0.05, myOtherSine);
   }
