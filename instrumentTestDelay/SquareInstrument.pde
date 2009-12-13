@@ -9,7 +9,7 @@ Line delamp;
   SquareInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    Osc = new Oscil(frequency, amplitude,Waves.Sine);
+    Osc = new Oscil(frequency, amplitude,Waves.RandomNoise());
     gain = new Gain(0);
     
     /**
@@ -24,9 +24,9 @@ Line delamp;
     
     
     
-   del = new Delay(200,20,Delay.LIN,1);
+  // del = new Delay(200,20,Delay.LIN,1);
    //del = new Delay(400,5, Delay.EXP,1);
-   //del = new Delay(200,new float[] {1, 0, 1, 1 , 0 , 1,1,1},1); 
+   del = new Delay(200,new float[] {1, 0, 1, 1 , 0 , 1,1,1},1); 
    
    
    
