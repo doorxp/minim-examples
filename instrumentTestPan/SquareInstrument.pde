@@ -20,7 +20,7 @@ class SquareInstrument implements Instrument
     Osc1.patch(gain).patch(pan).patch(out);
   }
  
-  void noteOn()
+  void noteOn(float dur)
   {
     //println("Note on!");
     gain.setValue(1);

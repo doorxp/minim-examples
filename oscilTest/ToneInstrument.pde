@@ -14,7 +14,7 @@ class ToneInstrument implements Instrument
     println("Instrument: patched");
   }
   
-  void noteOn()
+  void noteOn(float dur)
   {
     println("Instron!");
     gainGate.setValue(1.0);

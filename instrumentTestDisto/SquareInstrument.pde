@@ -21,7 +21,7 @@ distchange.patch(disto.amount);
     Osc.patch(disto).patch(gain).patch(out);
   }
  
-  void noteOn()
+  void noteOn(float dur)
   {
     //println("Note on!");
     gain.setValue(1);

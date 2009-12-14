@@ -60,7 +60,7 @@ void draw()
 
 void mousePressed()
 {
-  mySine.noteOn();
+  mySine.noteOn(0.0);
 }
 
 void mouseReleased()

@@ -36,7 +36,7 @@ void draw()
 
 void mousePressed()
 {
-  myWobble.noteOn();
+  myWobble.noteOn(0.0);
 }
 
 void mouseReleased()

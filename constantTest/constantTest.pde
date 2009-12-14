@@ -35,7 +35,7 @@ void draw()
 
 void mousePressed()
 {
-  slider.noteOn();
+  slider.noteOn(0.0);
 }
 
 void mouseReleased()

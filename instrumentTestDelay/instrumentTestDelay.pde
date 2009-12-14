@@ -52,7 +52,7 @@ void draw()
 
 void mousePressed()
 {
-  myTest.noteOn();
+  myTest.noteOn(0.0);
   //myOtherTest.noteOn();
 }
 

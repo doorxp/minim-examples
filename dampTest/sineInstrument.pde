@@ -14,7 +14,7 @@ class SineInstrument implements Instrument
     sineOsc.patch(damp).patch(out);
   }
   
-  void noteOn()
+  void noteOn(float dur)
   {
     //println("Note on!");
     gain.setValue(1);

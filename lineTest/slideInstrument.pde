@@ -15,7 +15,7 @@ class SlideInstrument implements Instrument
     tone.patch(gate).patch(out);
   }
   
-  void noteOn()
+  void noteOn(float dur)
   {
     //println("Note on!");
     gate.setValue(1);

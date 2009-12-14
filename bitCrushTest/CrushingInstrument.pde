@@ -21,7 +21,7 @@ class CrushingInstrument implements Instrument
     println("CrushInstrument: patched");
   }
   
-  void noteOn()
+  void noteOn(float dur)
   {
     println("Crush on!");
     gainGate.setValue(0.5);

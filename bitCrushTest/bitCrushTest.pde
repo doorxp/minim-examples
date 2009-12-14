@@ -38,7 +38,7 @@ void draw()
 
 void mousePressed()
 {
-  myCrush.noteOn();
+  myCrush.noteOn(0.0);
 }
 
 void mouseReleased()

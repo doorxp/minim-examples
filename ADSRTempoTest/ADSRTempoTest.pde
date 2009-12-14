@@ -66,7 +66,7 @@ void mousePressed()
 
 void mouseReleased()
 {
-  mySine.noteOff();
+  mySine.noteOff(0.0);
 }
 
 void stop()

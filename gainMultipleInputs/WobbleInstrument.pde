@@ -25,7 +25,7 @@ class WobbleInstrument implements Instrument
     println("WobbleInstrument: patched");
   }
   
-  void noteOn()
+  void noteOn(float dur)
   {
     println("wobble on!");
     gainGate.setValue(0.5);
