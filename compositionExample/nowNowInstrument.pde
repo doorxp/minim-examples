@@ -4,9 +4,14 @@ class nowNowInstrument implements Instrument
   ADSR  adsr;
   Bus sum;
   AudioOutput out;
+  Gain gainLo, gainHi;
   IIRFilter bpFilt1, bpFilt2;
   
   nowNowInstrument(float frequency, float amplitude, float tweak, AudioOutput output)
+  {
+    this(frequency, amplitude, tweak, 0.5, output);
+  }
+  nowNowInstrument(float frequency, float amplitude, float tweak, float high, AudioOutput output)
   {
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.Saw);
@@ -18,9 +23,11 @@ class nowNowInstrument implements Instrument
     float bw2 = bw1*(2+((float)Math.random()) )*tweak;
     bpFilt1 = new BandPass( cf1, bw1, out.sampleRate());
     bpFilt2 = new BandPass( cf2, bw2, out.sampleRate());
+    gainLo = new Gain( 2*(1-high));
+    gainHi = new Gain( 2*high);
     sum = new Bus();
-    sineOsc.patch(bpFilt1).patch(sum);
-    sineOsc.patch(bpFilt2).patch(sum);
+    sineOsc.patch(bpFilt1).patch(gainLo).patch(sum);
+    sineOsc.patch(bpFilt2).patch(gainHi).patch(sum);
   }
   
   void noteOn( float dur )
