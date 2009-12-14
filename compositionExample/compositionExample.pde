@@ -11,14 +11,36 @@ void setup()
   size(512, 200, P2D);
   
   minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 2048);
+  out = minim.getLineOut(Minim.MONO, 1024);
   //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
   //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
   out.setTempo( 202f );
-  for(int i = 0; i < 4; i++)
-  {
-    out.playNote(0 + i*1.0, 0.8, new nowNowInstrument(349.23, 0.8, out));
-    }
+  out.playNote(0.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(1.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(2.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(2.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(3.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(4.5, 0.4, new nowNowInstrument(349.00, 0.8, 0.6, out));
+  out.playNote(5.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(6.0, 0.4, new nowNowInstrument(349.00, 0.8, 0.6, out));
+  out.playNote(6.5, 0.8, new nowNowInstrument(349.22, 0.8, 1.0, out));
+  
+  out.playNote(8.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(9.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(9.5, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, out));
+  out.playNote(9.67, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, out));
+  out.playNote(9.83, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, out));
+  out.playNote(10.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  //out.playNote(10.75, 0.1, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(11.0, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(11.33, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(11.67, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(12.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(13.0, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(13.33, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(13.67, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(14.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  
 }
 
 void draw()
