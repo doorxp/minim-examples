@@ -11,11 +11,22 @@ void setup()
   size(512, 200, P2D);
   
   minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 1024);
+  out = minim.getLineOut(Minim.MONO, 2048);
   //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
   //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
   out.setTempo( 202f );
+  out.setNoteOffset( 4f );
 
+//set up section marker so one can reset the numbers back to 0.0
+  out.playNote(0.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
+  out.playNote(0.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
+  out.playNote(8.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
+  out.playNote(8.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
+  out.playNote(16.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
+  out.playNote(16.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
+  out.playNote(24.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
+  out.playNote(24.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
+  
   out.playNote(0.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   out.playNote(1.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   out.playNote(2.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
@@ -77,7 +88,9 @@ void setup()
   out.playNote(31.0, 0.6, new nowNowInstrument(349.23, 0.8, 1.3, 0.99, out));
   out.playNote(31.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.99, out));
 
-  //set up section marker so one can reset the numbers back to 0.0
+  out.setNoteOffset( 36f );
+
+//set up section marker so one can reset the numbers back to 0.0
   out.playNote(0.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
   out.playNote(0.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
   out.playNote(8.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
@@ -86,8 +99,6 @@ void setup()
   out.playNote(16.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
   out.playNote(24.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
   out.playNote(24.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
-  out.playNote(32.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
-  out.playNote(32.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
   
   
 }
