@@ -11,13 +11,16 @@ void setup()
   size(512, 200, P2D);
   
   minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 2048);
+  out = minim.getLineOut(Minim.MONO, 1024);
+  Wavetable baseWave = Waves.Square(3);
+  
   //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
   //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
   out.setTempo( 202f );
   out.setNoteOffset( 4f );
 
 //set up section marker so one can reset the numbers back to 0.0
+/*
   out.playNote(0.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
   out.playNote(0.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
   out.playNote(8.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
@@ -26,7 +29,7 @@ void setup()
   out.playNote(16.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
   out.playNote(24.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
   out.playNote(24.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
-  
+*/ 
   out.playNote(0.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   out.playNote(1.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   out.playNote(2.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, out));
@@ -89,18 +92,201 @@ void setup()
   out.playNote(31.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.99, out));
 
   out.setNoteOffset( 36f );
+  
 
-//set up section marker so one can reset the numbers back to 0.0
-  out.playNote(0.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
-  out.playNote(0.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
-  out.playNote(8.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
-  out.playNote(8.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
-  out.playNote(16.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
-  out.playNote(16.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
-  out.playNote(24.0, 4.0, new nowNowInstrument(87.3, 0.8, 0.3, 0.2, out));
-  out.playNote(24.0, 4.0, new nowNowInstrument(43.67, 24.8, 0.2, 0.1, out));
+  out.playNote(0.0, 1.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(0.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+
+  out.playNote(1.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  out.playNote(2.0, 0.4, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(2.0, 0.3, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+
+  out.playNote(2.5, 1.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(2.5, 0.8, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+
+  out.playNote(3.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(4.5, 0.3, new nowNowInstrument(349.23, 0.8, 0.3, out));
+  out.playNote(5.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   
+  out.playNote(6.0, 0.3, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(6.5, 0.3, new nowNowInstrument(349.23, 0.8, 0.3, out));
+  out.playNote(7.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
   
+  out.playNote(8.0, 1.0, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(8.0, 1.0, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+
+  out.playNote(10.0, 0.2, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(10.5, 0.7, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  out.playNote(11.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  out.playNote(12.5, 0.9, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  out.playNote(13.5, 0.3, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  //out.playNote(13.75, 0.3, new nowNowInstrument(349.23, 0.8, 0.3, out));
+  out.playNote(14.0, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  //out.playNote(14.75, 0.3, new nowNowInstrument(349.23, 0.8, 1.0, out));
+  out.playNote(15.0, 0.3, new nowNowInstrument(349.23, 0.8, 0.8, out));
+  //out.playNote(15.25, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, out));
+
+  out.playNote(16.0, 1.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(16.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  
+  out.playNote(16.5, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.6, out));
+  out.playNote(17.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.6, out));
+  out.playNote(17.5, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.6, out));
+  out.playNote(17.67, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.6, out));
+  out.playNote(17.83, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.7, out));
+  out.playNote(18.0, 0.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(18.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(18.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.7, out));
+  out.playNote(18.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, 0.7, out));
+  out.playNote(19.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, 0.7, out));
+  out.playNote(20.0, 3.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(20.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(20.0, 0.6, new nowNowInstrument(349.23, 0.8, 0.6, 0.7, out));
+  out.playNote(20.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.8, out));
+  out.playNote(21.0, 0.6, new nowNowInstrument(349.23, 0.8, 0.5, 0.8, out));
+  out.playNote(21.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.8, out));
+  out.playNote(22.0, 0.6, new nowNowInstrument(349.23, 0.8, 0.4, 0.9, out));
+  out.playNote(22.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.9, out));
+  out.playNote(23.0, 0.6, new nowNowInstrument(349.23, 0.8, 0.3, 0.9, out));
+  out.playNote(23.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.9, out));
+  
+  out.playNote(24.0, 1.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(24.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  
+  out.playNote(24.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.96, out));
+  out.playNote(25.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.96, out));
+  out.playNote(25.5, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.96, out));
+  out.playNote(25.67, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.96, out));
+  out.playNote(25.83, 0.1, new nowNowInstrument(349.23, 0.8, 0.5, 0.97, out));
+  out.playNote(26.0, 1.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(26.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  
+  //out.playNote(26.0, 0.4, new nowNowInstrument(349.23, 0.8, 1.0, 0.97, out));
+  out.playNote(26.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, 0.97, out));
+  out.playNote(27.5, 0.8, new nowNowInstrument(349.23, 0.8, 1.0, 0.97, out));
+  out.playNote(28.0, 0.8, new PooWahInstrument(0.2, 133.3, 34.65, baseWave, out));
+  out.playNote(28.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.018, out));
+  //out.playNote(28.0, 0.6, new nowNowInstrument(349.23, 0.8, 1.6, 0.97, out));
+  out.playNote(28.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.98, out));
+  out.playNote(29.0, 0.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  out.playNote(29.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(29.0, 0.6, new nowNowInstrument(349.23, 0.8, 1.5, 0.98, out));
+  out.playNote(29.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.98, out));
+  //out.playNote(30.0, 0.8, new PooWahInstrument(0.2, 133.3, 34.65, baseWave, out));
+  //out.playNote(30.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(30.0, 0.6, new nowNowInstrument(349.23, 0.8, 1.4, 0.99, out));
+  out.playNote(30.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.99, out));
+  //out.playNote(31.0, 0.8, new PooWahInstrument(0.2, 133.3, 43.65, baseWave, out));
+  //out.playNote(31.0, 0.7, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  out.playNote(31.0, 0.6, new nowNowInstrument(349.23, 0.8, 1.3, 0.99, out));
+  out.playNote(31.5, 0.6, new nowNowInstrument(349.23, 0.8, 1.0, 0.99, out));
+  
+  //out.playNote(1.0, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  //out.playNote(2.0, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  //out.playNote(3.0, 0.8, new PooWahInstrument(0.4, 83.3, 43.65, baseWave, out));
+  
+  //out.playNote(1.0, 0.8, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(2.0, 0.8, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+  //out.playNote(3.0, 0.8, new BrapInstrument(0.08, 349.23, 0.010, 0.013, out));
+
+  out.setNoteOffset( 68f );
+
+  //for(
+  out.playNote(0.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(0.0, 7.0, new BrapInstrument(0.08, 349.23, 0.020, 0.003, out));
+  
+  out.playNote(1.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(2.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  
+  out.playNote(2.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(3.5, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(4.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(5.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+
+  out.playNote(6.0, 0.4, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(6.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(7.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  //out.playNote(7.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  out.playNote(7.0, 1.0, new BrapInstrument(0.08, 349.23, 0.010, 0.0015, out));
+
+  out.setNoteOffset( 76f );
+
+  out.playNote(0.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(0.0, 7.0, new BrapInstrument(0.08, 349.23, 0.012, 0.011, out));
+  
+  out.playNote(1.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(2.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  
+  out.playNote(2.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(3.5, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(4.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(5.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+
+  out.playNote(6.0, 0.4, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(6.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(7.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  //out.playNote(7.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  out.playNote(7.0, 1.0, new BrapInstrument(0.08, 349.23, 0.010, 0.0015, out));
+  
+  out.setNoteOffset( 84f );
+
+  out.playNote(0.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(0.0, 7.0, new BrapInstrument(0.08, 349.23, 0.018, 0.005, out));
+  
+  out.playNote(1.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(2.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  
+  out.playNote(2.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(3.5, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(4.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(5.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+
+  out.playNote(6.0, 0.4, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(6.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(7.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  //out.playNote(7.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  out.playNote(7.0, 1.0, new BrapInstrument(0.08, 349.23, 0.010, 0.0015, out));
+
+out.setNoteOffset( 92f );
+
+  out.playNote(0.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(0.0, 7.0, new BrapInstrument(0.16, 349.23, 0.004, 0.019, out));
+  //out.playNote(0.0, 7.0, new BrapInstrument(0.08, 349.23, 0.002, 0.018, out));
+  
+  out.playNote(1.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(2.0, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  
+  out.playNote(2.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  
+  out.playNote(3.5, 0.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(4.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(5.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+
+  out.playNote(6.0, 0.4, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+  out.playNote(6.5, 1.8, new PooWahInstrument(0.4, 133.3, 43.65, baseWave, out));
+
+  out.playNote(7.0, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  //out.playNote(7.5, 0.2, new PooWahInstrument(0.2, 233.3, 192.65, baseWave, out));
+  out.playNote(7.0, 1.0, new BrapInstrument(0.08, 349.23, 0.010, 0.0015, out));
 }
 
 void draw()
