@@ -4,13 +4,9 @@ class PooWahInstrument implements Instrument
   ADSR hitDamp, adsr;
   Line baseFreq;
   Noise redNoise;
-  //ADSR  adsr;
   Bus sum1, sum;
   AudioOutput out;
-  //Gain gainLo, gainHi;
   IIRFilter lpFilt1;
-  //, bpFilt2;
-  //static Wavetable baseWave = Waves.Square(3);
   
   PooWahInstrument(float amp, float begFreq, float susFreq, Wavetable baseWave, AudioOutput output)
   {
