@@ -14,21 +14,36 @@ void setup()
   
   minim = new Minim(this);
   //minim.debugOn();
-  out = minim.getLineOut(Minim.STEREO, 4096);
+  out = minim.getLineOut();
   
   recorder = minim.createRecorder(out, "beeps.wav", false);
   recorder.beginRecord();
   
   out.setTempo(120);
   
+  out.pauseNotes();
+  
   for(int i = 0; i < 320; i++)
   {
     float b = i;
-    out.playNote(b, 0.1, new BeepInstrument(out));
-    out.playNote(b+0.25, 0.1, new BeepInstrument(out));
-    out.playNote(b+0.5, 0.1, new BeepInstrument(out));
-    out.playNote(b+0.75, 0.1, new BeepInstrument(out));
+    float dur = 1;
+    out.playNote(b, dur, new BeepInstrument(220, out));
+    out.playNote(b+0.25, dur, new BeepInstrument(440, out));
+    out.playNote(b+0.5, dur, new BeepInstrument(440, out));
+    out.playNote(b+0.75, dur, new BeepInstrument(440, out));
+    
+    out.playNote(b, dur, new BeepInstrument(110, out));
+    out.playNote(b+0.25, dur, new BeepInstrument(220, out));
+    out.playNote(b+0.5, dur, new BeepInstrument(220, out));
+    out.playNote(b+0.75, dur, new BeepInstrument(220, out));
+    
+    out.playNote(b, dur, new BeepInstrument(493.88, out));
+    out.playNote(b+0.25, dur, new BeepInstrument(554.37, out));
+    out.playNote(b+0.5, dur, new BeepInstrument(554.37, out));
+    out.playNote(b+0.75, dur, new BeepInstrument(554.37, out));    
   }
+  
+  out.resumeNotes();
 }
 
 void draw()
