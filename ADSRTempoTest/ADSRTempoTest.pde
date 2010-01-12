@@ -61,12 +61,12 @@ void draw()
 
 void mousePressed()
 {
-  mySine.noteOn();
+  mySine.noteOn( 0.0 );
 }
 
 void mouseReleased()
 {
-  mySine.noteOff(0.0);
+  mySine.noteOff();
 }
 
 void stop()
