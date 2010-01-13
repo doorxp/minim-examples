@@ -7,6 +7,7 @@ import ddf.minim.effects.*;
 Minim minim;
 AudioOutput out;
 SlideInstrument slider;
+MidiSlideInstrument midiSlider;
 
 void setup()
 {
@@ -14,8 +15,10 @@ void setup()
   
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 2048);
-  slider = new SlideInstrument(115, 234, 0.2, out);
+  slider = new SlideInstrument(110, 880, 0.2, out);
   out.playNote(0.25, 2.8, slider);
+  midiSlider = new MidiSlideInstrument(45.0, 81.0, 0.2, out);
+  out.playNote(3.55, 2.8, midiSlider);
   
 }
 
@@ -35,7 +38,7 @@ void draw()
 
 void mousePressed()
 {
-  slider.noteOn();
+  slider.noteOn( 0 );
 }
 
 void mouseReleased()

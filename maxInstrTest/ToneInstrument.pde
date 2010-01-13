@@ -3,12 +3,16 @@ class ToneInstrument implements Instrument
   Oscil sineOsc, lFOOsc;
   Gain  gainGate;
   AudioOutput out;
-  int iNote; 
+  int iNote;
+  float amp;
+  float freq;
   
   ToneInstrument(float frequency, float amplitude, int iN, AudioOutput output)
   {
     out = output;
     iNote = iN;
+    amp = amplitude;
+    freq = frequency;
     sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
     gainGate = new Gain(0);
     //println("Instrument: about to patch");
@@ -18,7 +22,7 @@ class ToneInstrument implements Instrument
   
   void noteOn(float dur)
   {
-    println("Instron number " + iNote );
+    println("Instron number " + iNote + "   amp = " + amp + "   freq = " + freq );
     gainGate.setValue(1.0);
     gainGate.patch(out);
   }

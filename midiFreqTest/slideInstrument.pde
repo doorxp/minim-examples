@@ -3,6 +3,7 @@ class SlideInstrument implements Instrument
   Oscil tone;
   Gain  gate;
   Line  freqControl;
+  Balance right;
   AudioOutput out;
   
   SlideInstrument(float begFreq, float endFreq, float amp, AudioOutput output)
@@ -10,9 +11,10 @@ class SlideInstrument implements Instrument
     out = output;
     tone = new Oscil(begFreq, amp, Waves.Triangle);
     gate = new Gain(0);
+    right = new Balance( 1.0 );
     freqControl = new Line( 1.0, begFreq, endFreq);
     freqControl.patch(tone.frequency);
-    tone.patch(gate).patch(out);
+    tone.patch( right ).patch(gate).patch(out);
   }
   
   void noteOn(float dur)

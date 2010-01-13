@@ -23,7 +23,7 @@ void setup()
   out.setTempo( 200 );
   for( int i = 0; i < nNotes; i++ )
   {
-    out.playNote( i , nNotes + 2 - i, new ToneInstrument( (3+i)*baseNote, 0.03 + (nNotes-i)/(100*nNotes) , i, out) );
+    out.playNote( i , nNotes + 2 - i, new ToneInstrument( (3+i)*baseNote, 0.05*(nNotes-i)/nNotes, i, out) );
   }
 }
 

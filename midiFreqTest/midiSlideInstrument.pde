@@ -3,6 +3,7 @@ class MidiSlideInstrument implements Instrument
   Oscil tone;
   Gain  gate;
   Line  freqControl;
+  Balance left, right;
   AudioOutput out;
   
   MidiSlideInstrument(float begNote, float endNote, float amp, AudioOutput output)
@@ -11,8 +12,10 @@ class MidiSlideInstrument implements Instrument
     tone = new Oscil( begNote, amp, Waves.Triangle );
     gate = new Gain( 0 );
     freqControl = new Line( 1.0, begNote, endNote );
+    left = new Balance( -1 );
+    right = new Balance( 1 );
     freqControl.patch( tone.midiFrequency );
-    tone.patch( gate ).patch( out );
+    tone.patch( left ).patch( gate ).patch( out );
   }
   
   void noteOn( float dur )

@@ -10,7 +10,7 @@ class SlideInstrument implements Instrument
     out = output;
     tone = new Oscil(begFreq, amp, Waves.Triangle);
     gate = new Gain(0);
-    freqControl = new Line(2.8, begFreq, endFreq);
+    freqControl = new Line( 1.0, begFreq, endFreq);
     freqControl.patch(tone.frequency);
     tone.patch(gate).patch(out);
   }
@@ -19,6 +19,7 @@ class SlideInstrument implements Instrument
   {
     //println("Note on!");
     gate.setValue(1);
+    freqControl.setLineTime( dur );
     freqControl.activate();
   }
   

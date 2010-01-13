@@ -10,11 +10,14 @@ class ToneInstrument implements Instrument
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
     lFOOsc = new Oscil(2.0, 1.0, Waves.Sine);
-    balance = new Balance( 0 );
+    balance = new Balance( 0.5 );
     gainGate = new Gain(0);
     println("Instrument: about to patch");
-    lFOOsc.patch( balance.balance );
-    sineOsc.patch( balance.audio ).patch( gainGate );
+    if ( frequency > 500.0 )
+    {
+      lFOOsc.patch( balance.balance );
+    }
+    sineOsc.patch( balance ).patch( gainGate );
     //sineOsc.patch(gainGate);
     println("Instrument: patched");
   }
