@@ -6,6 +6,7 @@ import ddf.minim.effects.*;
 
 Minim minim;
 AudioOutput out;
+AudioRecorder recorder;
 ToneInstrument myNote;
 
 void setup()
@@ -14,12 +15,15 @@ void setup()
 
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 1024);
+  recorder = minim.createRecorder(out, "beeps.wav", false);
+  recorder.beginRecord();
+
   int nNotes = 100;
-  float baseNote = 51.3;
+  float baseNote = 86.13;
   out.setTempo( 200 );
   for( int i = 0; i < nNotes; i++ )
   {
-    out.playNote( i , nNotes + 2 - i, new ToneInstrument( (3+i)*baseNote, 0.01 + (100-i)/1000 , i, out) );
+    out.playNote( i , nNotes + 2 - i, new ToneInstrument( (3+i)*baseNote, 0.03 + (nNotes-i)/(100*nNotes) , i, out) );
   }
 }
 
@@ -36,6 +40,12 @@ void draw()
     line(x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
     line(x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
   }  
+}
+
+void keyPressed()
+{
+  recorder.endRecord();
+  recorder.save();
 }
 
 void stop()
