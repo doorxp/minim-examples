@@ -17,8 +17,9 @@ class PeanutsSentencer
   float syllFreqModMax = 1.02;
   float syllFadeTimeModMin = 0.90;
   float syllFadeTimeModMax = 1.10;
-  boolean lastSyllFixedFreqMod = false;
-  float lastSyllFreqMod = 0.94;
+  boolean lastSyllFixedFreqMod = true;
+  float questionChance = 0.14;
+  float[] lastSyllFreqMod = { 0.89, 1.11 };
   boolean lastSyllLong = true;
 
   PeanutsSentencer( AudioOutput out )
@@ -60,7 +61,12 @@ class PeanutsSentencer
     }
     if ( lastSyllFixedFreqMod )
     {
-      syllFreqs[ nSylls - 1 ] = fundFreq * lastSyllFreqMod;
+      int iPhraseType = 0;
+      if ( Math.random() < questionChance )
+      {
+        iPhraseType = 1;
+      }
+      syllFreqs[ nSylls - 1 ] = fundFreq * lastSyllFreqMod[ iPhraseType ];
     }
     if ( lastSyllLong )
     {
