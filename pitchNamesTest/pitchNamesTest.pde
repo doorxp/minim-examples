@@ -14,44 +14,59 @@ void setup()
 
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 1024);
-  minim.debugOn();
-  out.setTempo( 120.0 );
+  //minim.debugOn();
   out.pauseNotes();
   
+  out.setTempo( 90.0 );
+  out.setNoteOffset( 2.0 );
   float vol = 0.33;
   out.playNote( 0.00, 0.2, new ToneInstrument( "E5", vol, out) );
   out.playNote( 0.25, 0.2, new ToneInstrument( "E5", vol, out) );
   out.playNote( 0.75, 0.2, new ToneInstrument( "E5", vol, out) );
   out.playNote( 1.25, 0.2, new ToneInstrument( "C5", vol, out) );
   out.playNote( 1.50, 0.2, new ToneInstrument( "E5", vol, out) );
-  out.playNote( 2.00, 0.7, new ToneInstrument( "G5", vol, out) );
-  out.playNote( 2.75, 0.7, new ToneInstrument( "G4", vol, out) );
+  out.playNote( 2.00, 0.2, new ToneInstrument( "G5", vol, out) );
+  out.playNote( 2.75, 0.2, new ToneInstrument( "G4", vol, out) );
   
-  out.playNote( 0.00, 0.1, new ToneInstrument( "Fa#4", vol, out) );
-  out.playNote( 0.25, 0.1, new ToneInstrument( "Fa4", vol, out) );
-  out.playNote( 0.75, 0.1, new ToneInstrument( "Fa4", vol, out) );
-  out.playNote( 1.25, 0.1, new ToneInstrument( "Fa#4", vol, out) );
-  out.playNote( 1.50, 0.1, new ToneInstrument( "Fa4", vol, out) );
-  out.playNote( 2.00, 0.1, new ToneInstrument( "Si4", vol, out) );
-  out.playNote( 2.75, 0.1, new ToneInstrument( "Sol4", vol, out) );
+  out.playNote( 0.00, 0.1, new ToneInstrument( "Fa#", vol, out) );
+  out.playNote( 0.25, 0.1, new ToneInstrument( "Fa", vol, out) );
+  out.playNote( 0.75, 0.1, new ToneInstrument( "Fa", vol, out) );
+  out.playNote( 1.25, 0.1, new ToneInstrument( "Fa#", vol, out) );
+  out.playNote( 1.50, 0.1, new ToneInstrument( "Fa", vol, out) );
+  out.playNote( 2.00, 0.1, new ToneInstrument( "Si", vol, out) );
+  out.playNote( 2.75, 0.1, new ToneInstrument( "Sol", vol, out) );
   
-  out.playNote( 0.00, 0.15, new ToneInstrument( "Re3", vol, out) );
-  out.playNote( 0.25, 0.15, new ToneInstrument( "Re3", vol, out) );
-  out.playNote( 0.75, 0.15, new ToneInstrument( "Re3", vol, out) );
-  out.playNote( 1.25, 0.15, new ToneInstrument( "Re3", vol, out) );
-  out.playNote( 1.50, 0.15, new ToneInstrument( "Re3", vol, out) );
-  out.playNote( 2.00, 0.65, new ToneInstrument( "Do4", vol, out) );
-  out.playNote( 2.75, 0.65, new ToneInstrument( "Sol3", vol, out) );
+  out.playNote( 0.00, 0.15, new ToneInstrument( "Re 3", vol, out) );
+  out.playNote( 0.25, 0.15, new ToneInstrument( "Re 3", vol, out) );
+  out.playNote( 0.75, 0.15, new ToneInstrument( "Re 3", vol, out) );
+  out.playNote( 1.25, 0.15, new ToneInstrument( "Re 3", vol, out) );
+  out.playNote( 1.50, 0.15, new ToneInstrument( "Re 3", vol, out) );
+  out.playNote( 2.00, 0.15, new ToneInstrument( "", vol, out) );
+  out.playNote( 2.75, 0.15, new ToneInstrument( "Sol 3", vol, out) );
   
-  out.setNoteOffset( 4.5 );
-  out.playNote( 0.00, 0.2, new ToneInstrument( "La-1", 0.9, out) );
-  out.playNote( 0.25, 0.2, new ToneInstrument( "La#0", 0.9, out) );
-  out.playNote( 0.50, 0.2, new ToneInstrument( "La##1", 0.9, out) );
-  out.playNote( 0.75, 0.2, new ToneInstrument( "La", 0.9, out) );
-  out.playNote( 1.00, 0.2, new ToneInstrument( "Sol9", 0.9, out) );
-  out.playNote( 1.25, 0.2, new ToneInstrument( "Sol11", 0.9, out) );
-  out.playNote( 1.50, 0.2, new ToneInstrument( "7", 0.9, out) );
-  out.playNote( 1.75, 0.2, new ToneInstrument( "", 0.9, out) );
+  out.setNoteOffset( 6.5 );
+  out.playNote( 0.00, 0.2, new ToneInstrument( "La-1", vol, out) );
+  out.playNote( 0.25, 0.2, new ToneInstrument( "La#0", vol, out) );
+  out.playNote( 0.50, 0.2, new ToneInstrument( "La##1", vol, out) );
+  out.playNote( 0.75, 0.2, new ToneInstrument( "La 2", vol, out) );
+  out.playNote( 1.00, 0.2, new ToneInstrument( "La 3", vol, out) );
+  out.playNote( 1.25, 0.2, new ToneInstrument( "La 4", vol, out) );
+  out.playNote( 1.50, 0.2, new ToneInstrument( "La 5", vol, out) );
+  out.playNote( 1.75, 0.2, new ToneInstrument( "La 6", vol, out) );
+  out.playNote( 2.00, 0.2, new ToneInstrument( "La 7", vol, out) );
+  out.playNote( 2.25, 0.2, new ToneInstrument( "La 8", vol, out) );
+  out.playNote( 2.50, 0.2, new ToneInstrument( "La 9", vol, out) );
+  out.playNote( 2.75, 0.2, new ToneInstrument( "La 10", vol, out) );
+  out.playNote( 3.00, 0.2, new ToneInstrument( "La 11", vol, out) );
+  out.playNote( 3.25, 0.2, new ToneInstrument( "La 8", vol, out) );
+ 
+  out.playNote( 4.00, 0.2, new ToneInstrument( "C 4", vol, out) );
+  out.playNote( 4.25, 0.2, new ToneInstrument( "Do ", vol, out) );
+  out.playNote( 4.50, 0.2, new ToneInstrument( " b ", vol, out) );
+  out.playNote( 4.75, 0.2, new ToneInstrument( "  5", vol, out) );
+  out.playNote( 5.00, 0.2, new ToneInstrument( " y ", vol, out) );
+  out.playNote( 5.25, 0.2, new ToneInstrument( "Fa  ", vol, out) );
+
   out.resumeNotes();
  }
 
