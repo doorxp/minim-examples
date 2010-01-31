@@ -18,8 +18,8 @@ void setup()
   
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 2048);
-  mySine = new SineInstrument(115, 0.5, out);
-  myOtherSine = new SineInstrument(220, 0.3, out);
+  mySine = new SineInstrument( 115, 0.5, out );
+  myOtherSine = new SineInstrument( 220, 0.3, out );
 
   //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
   //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
