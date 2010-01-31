@@ -14,11 +14,20 @@ void setup()
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 1024);
   
-  out.playNote( 0.0, 0.9, 100 );
-  out.playNote( 1.0, 0.9, 200 );
-  out.playNote( 2.0, 2.9, "C6" );
-  out.playNote( 3.0, 1.9, "E6" );
-  out.playNote( 4.0, 0.9, "G6" );
+  out.playNote( 0.0, 0.9, 97.99 );
+  out.playNote( 1.0, 0.9, 123.47 );
+  
+  out.playNote( 2.0, 2.9, "C3" );
+  out.playNote( 3.0, 1.9, "E3" );
+  out.playNote( 4.0, 0.9, "G3" );
+  
+  out.playNote( 5.0, "" );
+  out.playNote( 6.0, 329.63);
+  out.playNote( 7.0, "G4" );
+  
+  out.setNoteOffset( 8.1 );
+  out.playNote( "G5" );
+  out.playNote( 987.77 );
 
 }
 
