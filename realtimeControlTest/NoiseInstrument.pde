@@ -4,7 +4,7 @@ class NoiseInstrument implements Instrument
   Gain  gain;
   AudioOutput out;
   BandPass filt1, filt2;
-  Bus sum;
+  Summer sum;
   
   float freq1, freq2, freq3;
   float bandWidth1, bandWidth2;
@@ -19,7 +19,7 @@ class NoiseInstrument implements Instrument
     gain = new Gain( 0 );
     filt1 = new BandPass( freq1, bandWidth1, out.sampleRate() );
     filt2 = new BandPass( freq2(), bandWidth2(), out.sampleRate() );
-    sum = new Bus();
+    sum = new Summer();
 
     myNoise.patch( filt1 ).patch( sum );
     myNoise.patch( filt2 ).patch( sum );

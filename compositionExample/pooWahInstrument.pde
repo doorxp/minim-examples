@@ -4,7 +4,7 @@ class PooWahInstrument implements Instrument
   ADSR hitDamp, adsr;
   Line baseFreq;
   Noise redNoise;
-  Bus sum1, sum;
+  Summer sum1, sum;
   AudioOutput out;
   IIRFilter lpFilt1;
   
@@ -17,8 +17,8 @@ class PooWahInstrument implements Instrument
     hitDamp = new ADSR(1.0, 0.003, 0.0640, 0.0, 0.050);
     baseFreq = new Line( 0.067, begFreq, susFreq );
     lpFilt1 = new LowPassSP( susFreq, out.sampleRate() );
-    sum = new Bus();
-    sum1 = new Bus();
+    sum = new Summer();
+    sum1 = new Summer();
     baseFreq.patch(sineOsc.frequency);
     redNoise.patch(hitDamp).patch(lpFilt1).patch(sum1);
     sineOsc.patch(sum1);

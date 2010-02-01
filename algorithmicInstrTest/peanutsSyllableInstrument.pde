@@ -5,7 +5,7 @@ class PeanutsSyllableInstrument implements Instrument
   ADSR upDown;
   Constant one;
   Balance balance;
-  Bus sum;
+  Summer sum;
   AudioOutput out;
   IIRFilter lpFiltFixed, lpFilterSlide, bpFilter1, bpFilter2;
   float fadeTime;
@@ -43,7 +43,7 @@ class PeanutsSyllableInstrument implements Instrument
     lpFilterSlide = new LowPassSP( 1000.0, out.sampleRate() );
     bpFilter1 = new BandPass( bp1Freq, bp1BW, out.sampleRate() );
     bpFilter2 = new BandPass( bp2Freq, bp2BW, out.sampleRate() );
-    sum = new Bus();
+    sum = new Summer();
  
     one.patch( upDown ).patch( lpFilterSlide.cutoff );
     toneOsc.patch( lpFiltFixed ).patch( sum );

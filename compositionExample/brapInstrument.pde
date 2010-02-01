@@ -3,7 +3,7 @@ class BrapInstrument implements Instrument
   Oscil toneOsc, lfoOsc;
   ADSR  adsr;
   Noise redNoise;
-  Bus sum;
+  Summer sum;
   GranulateSteady chopper;
   AudioOutput out;
   
@@ -15,7 +15,7 @@ class BrapInstrument implements Instrument
     redNoise = new Noise( amp/8.0, Noise.Tint.RED);
     adsr = new ADSR( 1.0, 0.003, 0.003, 1.0, 0.003 );
     chopper = new GranulateSteady( onTime, offTime, 0.0025);
-    sum = new Bus();
+    sum = new Summer();
     
     lfoOsc.patch(toneOsc.frequencyModulation);
     toneOsc.patch( sum );

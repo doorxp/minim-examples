@@ -24,7 +24,7 @@ void setup()
   //filt = new HighPassSP(400, out.sampleRate());
   //filt = new NotchFilter(400, 100, out.sampleRate());
   // so we can sum the oscil with Constant, which shifts the center value of the Oscil
-  Bus bus = new Bus();
+  Summer bus = new Summer();
   cutoff = new Constant(1000);
   cutOsc = new Oscil(1, 800, Waves.Sine);
   cutoff.patch(bus);

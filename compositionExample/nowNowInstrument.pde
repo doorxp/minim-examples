@@ -2,7 +2,7 @@ class nowNowInstrument implements Instrument
 {
   Oscil sineOsc;
   ADSR  adsr;
-  Bus sum;
+  Summer sum;
   BitCrush crush;
   Gain gainLo, gainHi;
   IIRFilter bpFilt1, bpFilt2;
@@ -31,7 +31,7 @@ class nowNowInstrument implements Instrument
     gainLo = new Gain( 2*(1-high));
     gainHi = new Gain( 2*high);
     crush = new BitCrush( bitRes );
-    sum = new Bus();
+    sum = new Summer();
     
     sineOsc.patch(bpFilt1).patch(gainLo).patch(sum);
     sineOsc.patch(bpFilt2).patch(gainHi).patch(sum);
