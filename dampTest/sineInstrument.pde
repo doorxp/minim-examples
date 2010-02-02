@@ -18,7 +18,7 @@ class SineInstrument implements Instrument
   {
     //println("Note on!");
     gain.setValue( 1 );
-    damp.noteOn();
+    damp.activate();
   }
   
   void noteOff()

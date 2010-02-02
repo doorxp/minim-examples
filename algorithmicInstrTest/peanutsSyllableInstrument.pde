@@ -65,6 +65,6 @@ class PeanutsSyllableInstrument implements Instrument
   {
     adsr.noteOff();
     upDown.noteOff();
-    adsr.unpatchAfterNoteFinished(out);
+    adsr.unpatchAfterRelease( out );
   }
 }

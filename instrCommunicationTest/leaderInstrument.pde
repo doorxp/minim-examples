@@ -35,6 +35,6 @@ class LeaderInstrument implements Instrument
   {
     println("Lead off!");
     adsr.noteOff();
-    adsr.unpatchAfterNoteFinished( out );
+    adsr.unpatchAfterRelease( out );
   }
 }

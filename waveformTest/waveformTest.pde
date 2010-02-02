@@ -6,7 +6,6 @@ import ddf.minim.effects.*;
 
 Minim minim;
 AudioOutput out;
-AudioRecorder recorder;
 ToneInstrument myNote;
 
 void setup()
@@ -14,21 +13,12 @@ void setup()
   size(512, 200, P2D);
 
   minim = new Minim(this);
-  out = minim.getLineOut( Minim.MONO, 1024);
-  recorder = minim.createRecorder( out, "uT.wav", true );
-  recorder.beginRecord();
-  minim.debugOn();
-  out.pauseNotes();
-  
-  out.setTempo( 60.0 );
-  out.setNoteOffset( 1.0 );
-  float vol = 0.33;
-  out.playNote( 0.00, 0.099, new ToneInstrument( "Fa#", vol, out) );
-  out.playNote( 0.00, 0.15, new ToneInstrument( "Re 3", vol, out) );
-  out.playNote( 1.00, 0.452, new GainInstrument( 103, vol, out ) );
-  out.playNote( 1.00, 0.6, new GainInstrument( 100, vol, out ) );
-  out.resumeNotes();
- }
+  out = minim.getLineOut(Minim.MONO, 1024);
+  myNote = new ToneInstrument( 587.3f, 0.9, out);
+  out.playNote(0.5, 2.6, myNote );
+  myNote = new ToneInstrument( 415.3f, 0.9, out);
+  out.playNote(3.5, 2.6, myNote );
+}
 
 void draw()
 {
@@ -42,12 +32,6 @@ void draw()
     line(x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
     line(x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
   }  
-}
-
-void keyPressed()
-{
-  recorder.endRecord();
-  recorder.save();
 }
 
 void stop()

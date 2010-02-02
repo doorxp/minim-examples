@@ -37,6 +37,6 @@ class PooWahInstrument implements Instrument
   {
     hitDamp.noteOff();
     adsr.noteOff();
-    adsr.unpatchAfterNoteFinished(out);
+    adsr.unpatchAfterRelease( out );
   }
 }

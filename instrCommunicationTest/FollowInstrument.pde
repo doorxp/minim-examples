@@ -33,7 +33,7 @@ class FollowInstrument implements Instrument
   {
     println("Follow off!");
     adsr.noteOff();
-    adsr.unpatchAfterNoteFinished( out );
+    adsr.unpatchAfterRelease( out );
   }
   
   void receiveNewFreq( float newFreq )

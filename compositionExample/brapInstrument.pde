@@ -32,6 +32,6 @@ class BrapInstrument implements Instrument
   void noteOff()
   {
     adsr.noteOff();
-    adsr.unpatchAfterNoteFinished(out);
+    adsr.unpatchAfterRelease( out );
   }
 }
