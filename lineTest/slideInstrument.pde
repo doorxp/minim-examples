@@ -8,7 +8,7 @@ class SlideInstrument implements Instrument
   SlideInstrument(float begFreq, float endFreq, float amp, AudioOutput output)
   {
     out = output;
-    tone = new Oscil(begFreq, amp, Waves.Triangle);
+    tone = new Oscil(begFreq, amp, Waves.TRIANGLE);
     gate = new Gain(0);
     freqControl = new Line( 1.0, begFreq, endFreq);
     freqControl.patch(tone.frequency);

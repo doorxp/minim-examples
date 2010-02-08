@@ -9,7 +9,7 @@ class ToneInstrument implements Instrument
   ToneInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Triangle);
+    sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
     gainGate = new Gain(0);
     gate2 = new Gain(1);
     chopper = new GranulateSteady(0.010, 0.020, 0.0025);

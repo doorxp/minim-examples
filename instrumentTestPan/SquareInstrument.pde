@@ -8,9 +8,9 @@ class SquareInstrument implements Instrument
   SquareInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    Osc1 = new Oscil(frequency, amplitude,Waves.Sine);
-     LFO = new Oscil(1, 1,Waves.Sine);
-      LFOfreq = new Oscil(0.01, 20,Waves.Sine);
+    Osc1 = new Oscil(frequency, amplitude,Waves.SINE);
+     LFO = new Oscil(1, 1,Waves.SINE);
+      LFOfreq = new Oscil(0.01, 20,Waves.SINE);
 
    pan = new Pan(1,0);
     gain = new Gain(0);

@@ -7,7 +7,7 @@ class ToneInstrument implements Instrument
   ToneInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
     gainGate = new Gain(0);
     println("Instrument: about to patch");
     sineOsc.patch(gainGate);

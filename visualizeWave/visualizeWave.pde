@@ -16,11 +16,11 @@ void setup()
  //nb : uncomment any "Wavetable test = ..." line to visualize the waveform
  
  
- Wavetable test = Waves.add(new float[] {0.2,0.8},Waves.RandomNoise(),Waves.Sine);
- //Wavetable test = Waves.add(new float[] {0.5,0.5}, Waves.Saw(0.8),Waves.Triangle(0.2));
- //Wavetable test = Waves.add(new float[] {0.5,0.5}, Waves.RandomPulses(80),Waves.Sine);
- //Wavetable test = Waves.Triangle(0.2);
- //Wavetable test = Waves.RandomSaw(3);
+ Wavetable test = Waves.add(new float[] {0.2,0.8},Waves.randomNoise(),Waves.SINE);
+ //Wavetable test = Waves.add(new float[] {0.5,0.5}, Waves.saw(0.8),Waves.triangle(0.2));
+ //Wavetable test = Waves.add(new float[] {0.5,0.5}, Waves.RandomPulses(80),Waves.SINE);
+ //Wavetable test = Waves.triangle(0.2);
+ //Wavetable test = Waves.randomNHarms(3);
  //Wavetable test = Waves.RandomPulses(50);
  //Wavetable test =  Disto.Square;
  //Wavetable test = Disto.Diode;

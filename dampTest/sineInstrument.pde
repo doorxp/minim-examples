@@ -8,7 +8,7 @@ class SineInstrument implements Instrument
   SineInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil( frequency, amplitude, Waves.Sine );
+    sineOsc = new Oscil( frequency, amplitude, Waves.SINE );
     gain = new Gain( 0 );
     damp = new Damp( 0.004, 0.3 );
     sineOsc.patch( damp ).patch( out );

@@ -4,7 +4,7 @@ class PeanutsSentencer
   float fundFreq;
   float balanceVal;
   AudioOutput out;
-  Wavetable baseWave = Waves.Saw(50);
+  Wavetable baseWave = Waves.saw(50);
 
   float syllAmp = 0.6;
   float syllFadeTime = 0.03;

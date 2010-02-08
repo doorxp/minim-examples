@@ -26,7 +26,7 @@ class DidgeSlideInstrument implements Instrument
     out = output;
     float begFreq = speedOfSound/(waveLengthDivisor*begLength);
     
-    tone = new Oscil( begFreq, amp, Waves.Triangle( 4 ) );
+    tone = new Oscil( begFreq, amp, Waves.triangle( 4 ) );
     gate = new Gain(0);
     factor = new Constant( speedOfSound/waveLengthDivisor );
     lengthLine = new Line( 1.0, begLength, endLength );

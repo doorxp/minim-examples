@@ -7,7 +7,7 @@ class BeepInstrument implements Instrument
   BeepInstrument( float freq, AudioOutput out )
   {
     mOut = out;
-    mSine = new Oscil(freq, 0.2, Waves.Sine);
+    mSine = new Oscil(freq, 0.2, Waves.SINE);
     fade = new Line( 0.1, 0.2, 0 );
     fade.patch(mSine.amplitude);
   }

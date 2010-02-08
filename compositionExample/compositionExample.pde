@@ -26,8 +26,8 @@ void setup()
   minim = new Minim(this);
   out = minim.getLineOut(Minim.MONO, 1024);
   recorder = minim.createRecorder( out, "compositionExample.wav", true );
-  Wavetable baseWave = Waves.Square(3);
-  Wavetable noWave = Waves.Square(0);
+  Wavetable baseWave = Waves.square(3);
+  Wavetable noWave = Waves.square(0);
 
   out.setTempo( 202f );
   //---sectian 0--------------------------------------------------------------

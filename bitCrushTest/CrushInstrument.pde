@@ -8,7 +8,7 @@ class CrushInstrument implements Instrument
   CrushInstrument(float frequency, float amplitude, float bitRes, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
     bitCrush = new BitCrush(bitRes);
     gainGate = new Gain(0);
 

@@ -14,7 +14,7 @@ class LeaderInstrument implements Instrument
     frequency *= 2.0;
     this.frequency = frequency;
 
-    sineOsc = new Oscil( frequency, amplitude, Waves.Triangle(7) );
+    sineOsc = new Oscil( frequency, amplitude, Waves.triangle(7) );
     adsr = new ADSR( 1.0, 0.1, 0.1, 1.0, 0.1 );
 
     sineOsc.patch( adsr );

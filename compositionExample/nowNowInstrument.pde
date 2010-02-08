@@ -20,7 +20,7 @@ class nowNowInstrument implements Instrument
   {
     amplitude = 0.7*amplitude;
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Saw);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SAW);
     adsr = new ADSR(0.5, 0.005, 0.01, 0.5, 0.2);
     float cf1 = frequency*(1+((float)Math.random() - 0.5) ) * tweak;
     float cf2 = cf1*10.0*tweak;

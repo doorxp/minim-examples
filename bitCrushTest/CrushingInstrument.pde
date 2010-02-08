@@ -9,7 +9,7 @@ class CrushingInstrument implements Instrument
   CrushingInstrument(float frequency, float amplitude, float hiBitRes, float loBitRes, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
     bitCrush = new BitCrush(hiBitRes);
     crushLine = new Line(9.0, hiBitRes, loBitRes);
     gainGate = new Gain(0);

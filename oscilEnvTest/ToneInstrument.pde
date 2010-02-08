@@ -14,7 +14,7 @@ class ToneInstrument implements Instrument
     Wavetable myEnv = WavetableGenerator.gen7( 8192, 
         new float[] { 0.00, 1.00, 0.15, 1.00, 0.00 }, 
         new int[]   { 1192, 1000,   50, 5950 } );
-    ToneOsc = new Oscil( frequency, 1.0f, Waves.Square( 5 ) );
+    ToneOsc = new Oscil( frequency, 1.0f, Waves.square( 5 ) );
     envOsc = new Oscil( 1.0f, amplitude, myEnv );
     
     envOsc.patch( ToneOsc.amplitude );

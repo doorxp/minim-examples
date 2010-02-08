@@ -7,11 +7,11 @@ class WobbleInstrument implements Instrument
   WobbleInstrument(float frequency, float amplitude, float lFOFreq, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
-    lFO1 = new Oscil(lFOFreq/2.0, frequency, Waves.Sine);
-    lFO2 = new Oscil(frequency/2.0, 1.0, Waves.Sine);
-    lFO3 = new Oscil(frequency/3.0, 100.0, Waves.Sine);
-    lFO4 = new Oscil(lFOFreq/4.0, 0.5, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
+    lFO1 = new Oscil(lFOFreq/2.0, frequency, Waves.SINE);
+    lFO2 = new Oscil(frequency/2.0, 1.0, Waves.SINE);
+    lFO3 = new Oscil(frequency/3.0, 100.0, Waves.SINE);
+    lFO4 = new Oscil(lFOFreq/4.0, 0.5, Waves.SINE);
     gainGate = new Gain(0);
     gainLFO = new Gain(1);
     println("WobbleInstrument: about to patch");

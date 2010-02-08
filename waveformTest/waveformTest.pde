@@ -20,7 +20,7 @@ void setup()
   out.setDurationFactor( 0.95f );
   out.pauseNotes();
 
-  Waveform disWave = Waves.Saw( 4 );
+  Waveform disWave = Waves.saw( 4 );
   out.playNote( 0.0, 1.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
   out.playNote( 1.0, 1.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
   out.playNote( 2.0, 1.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
@@ -30,7 +30,7 @@ void setup()
   out.playNote( 5.0, 0.75, new ToneInstrument( "C4 ", vol, disWave, out ) );
   out.playNote( 5.75, 0.25, new ToneInstrument( "G4 ", vol, disWave, out ) );
   out.playNote( 6.0, 2.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
-  disWave = Waves.Triangle( 9 );
+  disWave = Waves.triangle( 9 );
   out.playNote( 8.0, 1.0, new ToneInstrument( "B4 ", vol, disWave, out ) );
   out.playNote( 9.0, 1.0, new ToneInstrument( "B4 ", vol, disWave, out ) );
   out.playNote(10.0, 1.0, new ToneInstrument( "B4 ", vol, disWave, out ) );
@@ -41,19 +41,19 @@ void setup()
   out.playNote(13.75, 0.25, new ToneInstrument( "G4 ", vol, disWave, out ) );
   out.playNote(14.0, 2.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
 
-  disWave = Waves.RandomSquare( 6 );
+  disWave = Waves.randomNOddHarms( 3 );
   out.playNote( 0.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote( 2.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote( 4.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote( 6.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
-  disWave = Waves.Triangle;
+  disWave = Waves.TRIANGLE;
   out.playNote( 8.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote(10.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote(12.0, 1.9, new ToneInstrument( "C3 ", vol, disWave, out ) );
   out.playNote(14.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
     
   //-----  
-  disWave = Waves.Triangle( 0.75 );  
+  disWave = Waves.triangle( 0.75 );  
   out.setNoteOffset( 16.0 );
   out.playNote( 0.0, 1.0, new ToneInstrument( "E5 ", vol, disWave, out ) );
   out.playNote( 1.0, 1.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
@@ -67,7 +67,7 @@ void setup()
   out.playNote( 6.0, 1.0, new ToneInstrument( "Bb4 ", vol, disWave, out ) );
   out.playNote( 7.0, 0.5, new ToneInstrument( "A4 ", vol, disWave, out ) );
   out.playNote( 7.5, 0.5, new ToneInstrument( "Ab4 ", vol, disWave, out ) );
-  disWave = Waves.add( new float[] { 0.5, 0.5 }, Waves.Triangle( 0.05 ), Waves.RandomSquare( 3 ) );
+  disWave = Waves.add( new float[] { 0.5, 0.5 }, Waves.triangle( 0.05 ), Waves.randomNOddHarms( 3 ) );
   out.playNote( 8.0, 0.25, new ToneInstrument( "G4 ", vol, disWave, out ) );
   out.playNote( 8.25, 0.25, new ToneInstrument( "F#4 ", vol, disWave, out ) );
   out.playNote( 8.5, 0.50, new ToneInstrument( "G4 ", vol, disWave, out ) );
@@ -80,22 +80,15 @@ void setup()
   out.playNote(13.75, 0.25, new ToneInstrument( "G4 ", vol, disWave, out ) );
   out.playNote(14.0, 2.0, new ToneInstrument( "E4 ", vol, disWave, out ) );
 
-  disWave = Waves.RandomSaw( 9 );
+  disWave = Waves.randomNHarms( 9 );
   out.playNote( 4.0, 1.9, new ToneInstrument( "Bb3 ", vol/2, disWave, out ) );
   out.playNote( 4.0, 1.9, new ToneInstrument( "F3 ", vol/2, disWave, out ) );
-  //disWave = Waves.Square( 24 );
+  //disWave = Waves.square( 24 );
   out.playNote( 8.0, 1.9, new ToneInstrument( "C3 ", vol/2, disWave, out ) );
   out.playNote( 8.0, 1.9, new ToneInstrument( "Eb3 ", vol/2, disWave, out ) );
   out.playNote(10.0, 1.9, new ToneInstrument( "C3 ", vol, disWave, out ) );
   out.playNote(12.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
   out.playNote(14.0, 1.9, new ToneInstrument( "E3 ", vol, disWave, out ) );
-
-
-
-
-
-
-
 
   out.resumeNotes();
 }

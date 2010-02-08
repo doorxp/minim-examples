@@ -17,7 +17,7 @@ void setup()
   
   minim = new Minim(this);
   out = minim.getLineOut();
-  osc = new Oscil(500, 0.2, Waves.Saw);
+  osc = new Oscil(500, 0.2, Waves.SAW);
   filt = new LowPassSP(400, out.sampleRate());
   //filt = new LowPassFS(400, out.sampleRate());
   //filt = new BandPass(400, 100, out.sampleRate());
@@ -26,7 +26,7 @@ void setup()
   // so we can sum the oscil with Constant, which shifts the center value of the Oscil
   Summer bus = new Summer();
   cutoff = new Constant(1000);
-  cutOsc = new Oscil(1, 800, Waves.Sine);
+  cutOsc = new Oscil(1, 800, Waves.SINE);
   cutoff.patch(bus);
   cutOsc.patch(bus);  
   // hook up the modulation for the cutoff frequency of the filter

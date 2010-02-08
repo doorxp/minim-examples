@@ -10,7 +10,7 @@ class MidiSlideInstrument implements Instrument
   MidiSlideInstrument(float begNote, float endNote, float amp, AudioOutput output)
   {
     out = output;
-    tone = new Oscil( begNote, amp, Waves.Triangle );
+    tone = new Oscil( begNote, amp, Waves.TRIANGLE );
     gate = new Gain( 0 );
     freqControl = new Line( 1.0, begNote, endNote );
     midi2Hz = new Midi2Hz();

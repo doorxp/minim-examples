@@ -9,7 +9,7 @@ class ToneInstrument implements Instrument
     out = output;
     float frequency = Frequency.ofPitch( note ).asHz();
 
-    sineOsc = new Oscil(frequency, amplitude, Waves.Triangle);
+    sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
     adsr = new ADSR( 1.0, 0.01, 0.01, 1.0, 0.02 );
 
     sineOsc.patch( adsr );

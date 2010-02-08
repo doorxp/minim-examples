@@ -14,7 +14,7 @@ class FollowInstrument implements Instrument
     
     frequency *= 2.0;
 
-    sineOsc = new Oscil( frequency, amplitude, Waves.Sine );
+    sineOsc = new Oscil( frequency, amplitude, Waves.SINE );
     adsr = new ADSR( 1.0, 0.1, 0.1, 1.0, 0.1 );
     freqLine = new Line( alignDelay, frequency, frequency );
 

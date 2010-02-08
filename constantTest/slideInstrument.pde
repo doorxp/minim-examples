@@ -9,7 +9,7 @@ class SlideInstrument implements Instrument
   SlideInstrument(float begFreq, float endFreq, float amp, AudioOutput output)
   {
     out = output;
-    tone = new Oscil(begFreq, amp, Waves.Triangle);
+    tone = new Oscil(begFreq, amp, Waves.TRIANGLE);
     gate = new Gain(0);
     one = new Constant(1);
     freqControl = new ADSR(2*begFreq, 1.0f, 1.0f, 0.5, 1.0, begFreq, endFreq);

@@ -9,7 +9,7 @@ Line distchange;
   SquareInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    Osc = new Oscil(frequency, amplitude,Waves.Sine);
+    Osc = new Oscil(frequency, amplitude,Waves.SINE);
     gain = new Gain(0);
     
 disto = new Disto(Disto.TruncSine(), 1);

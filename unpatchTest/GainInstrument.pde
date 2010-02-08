@@ -7,7 +7,7 @@ class GainInstrument implements Instrument
   GainInstrument(float frequency, float amplitude, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
     gainGate = new Gain(0);
     sineOsc.patch(gainGate);
   }

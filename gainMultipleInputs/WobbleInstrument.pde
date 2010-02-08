@@ -7,8 +7,8 @@ class WobbleInstrument implements Instrument
   WobbleInstrument(float frequency, float amplitude, float lFOFreq, AudioOutput output)
   {
     out = output;
-    sineOsc = new Oscil(frequency, amplitude, Waves.Sine);
-    lFOOsc = new Oscil(lFOFreq/2.0, 1.0, Waves.Sine);
+    sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
+    lFOOsc = new Oscil(lFOFreq/2.0, 1.0, Waves.SINE);
     gainGate = new Gain(0);
     gainLFO = new Gain(1);
     //gainLFO.setSampleRate(out.sampleRate());

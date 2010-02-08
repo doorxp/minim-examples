@@ -10,8 +10,8 @@ class BrapInstrument implements Instrument
   BrapInstrument(float amp, float toneFreq, float onTime, float offTime, AudioOutput output)
   {
     out = output;
-    toneOsc = new Oscil(toneFreq, amp, Waves.Triangle);
-    lfoOsc = new Oscil( toneFreq/2.0, toneFreq/2.0, Waves.Saw);
+    toneOsc = new Oscil(toneFreq, amp, Waves.TRIANGLE);
+    lfoOsc = new Oscil( toneFreq/2.0, toneFreq/2.0, Waves.SAW);
     redNoise = new Noise( amp/8.0, Noise.Tint.RED);
     adsr = new ADSR( 1.0, 0.003, 0.003, 1.0, 0.003 );
     chopper = new GranulateSteady( onTime, offTime, 0.0025);
