@@ -3,7 +3,7 @@ class SquareInstrument implements Instrument
   Oscil Osc;
   Gain  gain;
   AudioOutput out;
-Disto disto;
+WaveShaper disto;
 Line distchange;
   
   SquareInstrument(float frequency, float amplitude, AudioOutput output)
@@ -12,7 +12,7 @@ Line distchange;
     Osc = new Oscil(frequency, amplitude,Waves.SINE);
     gain = new Gain(0);
     
-disto = new Disto(Disto.TruncSine(), 1);
+disto = new WaveShaper(WaveShaper.TruncSine(), 1);
 
  distchange = new Line(5,1,8);
    

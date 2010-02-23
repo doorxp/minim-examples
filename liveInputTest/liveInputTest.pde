@@ -8,7 +8,7 @@ import ddf.minim.effects.*;
 
 Minim minim;
 AudioOutput out;
-Input in;
+LiveInput in;
 
 void setup()
 {
@@ -17,7 +17,7 @@ void setup()
   minim = new Minim(this);
   minim.debugOn();
   out = minim.getLineOut();
-  in = new Input( minim.getInputStream(Minim.STEREO, 1024, 44100.f, 16) );
+  in = new LiveInput( minim.getInputStream(Minim.STEREO, 1024, 44100.f, 16) );
   
   GranulateSteady grain = new GranulateSteady();
   
