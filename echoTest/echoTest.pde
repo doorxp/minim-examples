@@ -9,6 +9,8 @@ AudioOutput out;
 SquareInstrument myTest;
 SquareInstrument myOtherTest;
 
+// CURRENTLY DOES NOT WORK!!!!
+
 void setup()
 {
   size(600, 200);
