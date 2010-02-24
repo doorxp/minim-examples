@@ -9,7 +9,7 @@ import ddf.minim.effects.*;
 Minim minim;
 AudioOutput out;
 LiveInput in;
-Delay myDelay;
+Echo myEcho;
 Oscil myLFO;
 Constant myConst;
 Summer sum;
@@ -22,15 +22,16 @@ void setup()
   minim.debugOn();
   out = minim.getLineOut(Minim.MONO, 256);
   in = new LiveInput( minim.getInputStream(Minim.MONO, 1024, 44100.f, 16) );  
-  myDelay = new Delay(1.00, 0.75, true);
+  myEcho = new Echo(1.00, 0.75, true);
   myLFO = new Oscil( 1.0, 0.14 );
   myConst = new Constant( 0.25 );
   sum = new Summer();
   
   myConst.patch( sum );
   myLFO.patch( sum );
-  //sum.patch( myDelay.delay );
-  in.patch(myDelay).patch(out);
+  //sum.patch( myEcho.delay );
+  in.patch( myEcho ).patch(out);
+  
 }
 
 void draw()
@@ -50,9 +51,9 @@ void draw()
 void mouseMoved()
 {
   float delayTime = map( mouseX, 0, width, 0.0001, 0.5 );
-  myDelay.setDelay( delayTime );
+  myEcho.setDelay( delayTime );
   float feedbackFactor = map(mouseY, 0, height, 0.0, 0.99);
-  myDelay.setFeedback( feedbackFactor );
+  myEcho.setFeedback( feedbackFactor );
 }
 
 void stop()
