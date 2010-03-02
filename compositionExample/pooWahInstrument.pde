@@ -12,7 +12,7 @@ class PooWahInstrument implements Instrument
   {
     out = output;
     sineOsc = new Oscil(begFreq, amp, baseWave);
-    redNoise = new Noise( 0.3, Noise.Tint.RED );
+    redNoise = new Noise( 0.3, Noise.Tint.PINK );
     adsr = new ADSR(1.0, 0.003, 0.0640, 0.2, 0.050);
     hitDamp = new ADSR(1.0, 0.003, 0.0640, 0.0, 0.050);
     baseFreq = new Line( 0.067, begFreq, susFreq );
