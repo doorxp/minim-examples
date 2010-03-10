@@ -1,7 +1,8 @@
 /* noiseExample
 is a example of how to use noise in an instrument.
 It is shows the different types of noise using a slightly
-interesting bouncing cyan bar.
+interesting bouncing cyan bar.  This is also an example of how
+to connect the visual aspects of Processing and Minim.
 
 author:Anderson Mills
 Anderson Mills's work was supported by numediart (www.numediart.org).
@@ -16,9 +17,7 @@ import ddf.minim.ugens.*;
 Minim minim;
 AudioOutput out;
 // used as instruments
-WhiteNoiseInstrument myWhiteNoise;
-RedNoiseInstrument myRedNoise;
-PinkNoiseInstrument myPinkNoise;
+NoiseInstrument myWhiteNoise, myPinkNoise, myRedNoise;
 // used for the drawing
 color noiseColor;
 int xa;
@@ -30,11 +29,13 @@ void setup()
 {
   // initialize the minim and out objects
   minim = new Minim(this);
+  // the small buffer size of 512 is chosen to minimize delay between the visual and audio
+  // this may cause problems with buffer underruns on slower systems
   out = minim.getLineOut(Minim.MONO, 512);
   // define the notes that will be played
-  myWhiteNoise = new WhiteNoiseInstrument( 0.5, out );
-  myRedNoise = new RedNoiseInstrument( 0.5, out );
-  myPinkNoise = new PinkNoiseInstrument( 0.5, out );
+  myWhiteNoise = new NoiseInstrument( 0.5, Noise.Tint.WHITE, out );
+  myPinkNoise = new NoiseInstrument( 0.5, Noise.Tint.PINK, out );
+  myRedNoise = new NoiseInstrument( 0.5, Noise.Tint.RED, out );
   // define some variables for making the drawing
   xa = 10;
   xDir = 1;
