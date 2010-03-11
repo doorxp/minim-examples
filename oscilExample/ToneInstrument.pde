@@ -7,7 +7,7 @@ class ToneInstrument implements Instrument
   Gain  gainGate;
   AudioOutput out;
   
-  // constructors for our intsrument
+  // constructors for this intsrument
   ToneInstrument( float frequency, float amplitude, AudioOutput output )
   {
     // equate class variables to constructor variables as necessary 
