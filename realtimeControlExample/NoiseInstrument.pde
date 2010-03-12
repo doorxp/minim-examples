@@ -15,6 +15,7 @@ class NoiseInstrument implements Instrument
   Summer sum; 
   float freq1, freq2, freq3;
   float bandWidth1, bandWidth2;
+  float filterFactor;
   
   // constructors for this intsrument
   NoiseInstrument( float amplitude, AudioOutput output )
@@ -25,6 +26,7 @@ class NoiseInstrument implements Instrument
     // give some initial values to the realtime control variables
     freq1 = 150.0;
     bandWidth1 = 10.0;
+    filterFactor = 1.7;
     
     // create new instances of any UGen objects
     myNoise = new Noise( amplitude, Noise.Tint.WHITE );
@@ -36,7 +38,7 @@ class NoiseInstrument implements Instrument
     // patch everything (including the out this time)
     myNoise.patch( filt1 ).patch( sum );
     myNoise.patch( filt2 ).patch( sum );
-    sum.patch( gain ).patch( out );
+    sum.patch( gain );
   }
   
   // every instrument must have a noteOn( float ) method
@@ -44,6 +46,7 @@ class NoiseInstrument implements Instrument
   {
     // set the gain to 1 to turn on the note
     gain.setValue( 1 );
+    gain.patch( out );
   }
   
   // every instrument must have a noteOff() method
@@ -51,23 +54,26 @@ class NoiseInstrument implements Instrument
   {
     // set the gain to 0 to turn off the note 
     gain.setValue( 0 );
+    gain.unpatch( out );
   }
   
   // this is a helper method only used internally to find the second filter
   float freq2()
   {
     // calculate the second frequency based on the first
-    return 2.0*freq1;
+    return filterFactor*freq1;
   }
   
-  // this is a helper method only used internally to find the second filter
+  // this is a helper method only used internally 
+  // to find the bandwidth of the second filter
   float bandWidth2()
   {
     // calculate the second bandwidth based on the first
-    return 2.0*bandWidth1;
+    return filterFactor*bandWidth1;
   }
   
-  // th
+  // this is a method to set the center frequencies
+  // of the two filters based on the CF of the first
   void setFilterCF( float cf )
   {
     freq1 = cf;
@@ -75,17 +81,19 @@ class NoiseInstrument implements Instrument
     filt2.setFreq( freq2() );
   }
   
+  // this is a method to set the bandwidths
+  // of the two filters based on the BW of the first
   void setFilterBW( float bw )
   {
     bandWidth1 = bw;
     filt1.setBandWidth( bandWidth1 );
     filt2.setBandWidth( bandWidth2() );
   }
-  
+ 
+  // this is a method to set the Q (inverse of bandwidth)
+  // of the two filters based on the  
   void setFilterQ( float q )
   {
-    bandWidth1 = freq1/q;
-    filt1.setBandWidth( bandWidth1 );
-    filt2.setBandWidth( bandWidth2() );
+    setFilterBW( freq1/q );
   }
 }
