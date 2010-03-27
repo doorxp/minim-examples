@@ -1,78 +1,99 @@
-import ddf.minim.signals.*;
-import ddf.minim.*;
-import ddf.minim.analysis.*;
-import ddf.minim.ugens.*;
-import ddf.minim.effects.*;
+/* dampExample
+   is an example of using the Damp UGen inside an instrument.
+   
+   author: Anderson Mills
+   Anderson Mills's work was supported by numediart (www.numediart.org)
+*/
 
+// import everything necessary to make sound.
+import ddf.minim.*;
+import ddf.minim.ugens.*;
+
+// create all of the variables that will need to be accessed in
+// more than one methods (setup(), draw(), stop()).
 Minim minim;
 AudioOutput out;
-SineInstrument mySine;
-SineInstrument myOtherSine;
 
-int xa;
-int xDir;
-
+// setup is run once at the beginning
 void setup()
 {
-  size(512, 200, P2D);
+  // initialize the minim and out objects
+  minim = new Minim( this );
+  out = minim.getLineOut( Minim.MONO, 2048 );
   
-  minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 2048);
-  mySine = new SineInstrument( 115, 0.5, out );
-  myOtherSine = new SineInstrument( 220, 0.3, out );
+  // initialize the drawing window
+  size( 512, 200, P2D );
+  
+  // pause time when adding a bunch of notes at once
+  out.pauseNotes();
+  
+  // one can add an offset to all notes until the next noteOffset
+  out.setNoteOffset( 2f );
 
-  //out.playNote(0.25, 0.8, new SineInstrument(115, 0.5, out));
-  //out.playNote(1.20, 0.8, new SineInstrument(134, 0.5, out));
-  for(int i = 0; i < 4; i++)
+  // one can set the tempo of the piece in beats per minute, too
+  out.setTempo( 130f );
+
+  for( int i = 0; i < 4; i++ )
   {
-    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
-    out.playNote(1.50 + i*2.0, 0.3, new SineInstrument(75, 0.8, out));
+    // low notes
+    out.playNote( 0.00 + i*4.0, 1.0, new ToneInstrument( 80, 0.5, out ) );
+    out.playNote( 1.75 + i*4.0, 0.2, new ToneInstrument( 80, 0.4, out ) );
+    // two extra low notes every other pattern
+    if (( 0 == i ) || ( 2 == i ) )
+    {
+      out.playNote( 2.50 + i*4.0, 0.5, new ToneInstrument( 79, 0.3, out ) );
+      out.playNote( 3.50 + i*4.0, 0.2, new ToneInstrument( 81, 0.4, out ) );
+    }
+    // middle notes
+    out.playNote( 1.00 + i*4.0, 0.4, new ToneInstrument( 161, 0.3, out ) );
+    out.playNote( 3.00 + i*4.0, 0.4, new ToneInstrument( 158, 0.3, out ) );
     
-    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
-    out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(175, 0.6, out));
+    // high notes
+    out.playNote( 0.00 + i*4.0, 0.2, new ToneInstrument( 1610, 0.03, out ) );
+    out.playNote( 0.50 + i*4.0, 0.2, new ToneInstrument( 2010, 0.03, out ) );
+    out.playNote( 0.75 + i*4.0, 0.3, new ToneInstrument( 1650, 0.09, out ) );
+    out.playNote( 1.00 + i*4.0, 0.6, new ToneInstrument( 1610, 0.09, out ) );
+    out.playNote( 1.25 + i*4.0, 0.1, new ToneInstrument( 2010, 0.03, out ) );
+    out.playNote( 1.50 + i*4.0, 0.5, new ToneInstrument( 1610, 0.06, out ) );
+
+    // two extra high notes every other pattern
+    if (( 1 == i ) || ( 3 == i ) )
+    {
+      out.playNote( 3.50 + i*4.0, 0.1, new ToneInstrument( 3210, 0.06, out ) );
+      out.playNote( 3.75 + i*4.0, 0.5, new ToneInstrument( 2010, 0.09, out ) );
+    }  
     
-    //out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(0.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(0.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(0.75 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(1.0 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(1.25 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(1.5 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    out.playNote(1.75 + i*2.0, 0.3, new SineInstrument(1750, 0.1, out));
-    
-    //out.playNote(i*0.5, 0.05, myOtherSine);
   }
+  // resume time after a bunch of notes are added at once
+  out.resumeNotes();
 }
 
+// draw is run many times
 void draw()
 {
-  background(0);
-  stroke(255);
+  // erase the window to black
+  background( 0 );
+  // draw using a white stroke
+  stroke( 255 );
   // draw the waveforms
-  for(int i = 0; i < out.bufferSize() - 1; i++)
+  for( int i = 0; i < out.bufferSize() - 1; i++ )
   {
-    float x1 = map(i, 0, out.bufferSize(), 0, width);
-    float x2 = map(i+1, 0, out.bufferSize(), 0, width);
-    line(x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
-    line(x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
+    // find the x position of each buffer value
+    float x1  =  map( i, 0, out.bufferSize(), 0, width );
+    float x2  =  map( i+1, 0, out.bufferSize(), 0, width );
+    // draw a line from one buffer position to the next for both channels
+    line( x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
+    line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
   }  
 }
 
-void mousePressed()
-{
-  mySine.noteOn(0.0);
-}
-
-void mouseReleased()
-{
-  mySine.noteOff();
-}
-
+// stop is run when the user presses stop
 void stop()
 {
+  // close the AudioOutput
   out.close();
+  // stop the minim object
   minim.stop();
-
+  // stop the processing object
   super.stop();
 }
-
