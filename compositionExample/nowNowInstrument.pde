@@ -1,4 +1,4 @@
-class nowNowInstrument implements Instrument
+class NowNowInstrument implements Instrument
 {
   Oscil sineOsc;
   ADSR  adsr;
@@ -8,15 +8,15 @@ class nowNowInstrument implements Instrument
   IIRFilter bpFilt1, bpFilt2;
   AudioOutput out;
   
-  nowNowInstrument(float frequency, float amplitude, float tweak, AudioOutput output)
+  NowNowInstrument(float frequency, float amplitude, float tweak, AudioOutput output)
   {
     this(frequency, amplitude, tweak, 0.5, 16.0, output);
   }
-  nowNowInstrument(float frequency, float amplitude, float tweak, float high, AudioOutput output)
+  NowNowInstrument(float frequency, float amplitude, float tweak, float high, AudioOutput output)
   {
     this( frequency, amplitude, tweak, high, 16.0, output );
   }
-  nowNowInstrument(float frequency, float amplitude, float tweak, float high, float bitRes, AudioOutput output)
+  NowNowInstrument(float frequency, float amplitude, float tweak, float high, float bitRes, AudioOutput output)
   {
     amplitude = 0.7*amplitude;
     out = output;
