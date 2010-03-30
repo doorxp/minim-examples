@@ -1,8 +1,10 @@
 
 /* compositionExample
    is an example of one way to go about doing electronic music with Minim.
-   This is a generally traditional and non-algorithmic approach to composition, 
-   but there are a couple of for loops with some changing varibles down below.
+   Basically, all notes are written down in some sort of notation and then played through.
+   This is a generally traditional and non-algorithmic approach to composition. 
+   In the later sections of this, though, there are a couple of for loops with some i
+   changing varibles, so that's nat completely traditional.
    I'm a rhythm and techno guy, so this is what I made.
    
    author: Anderson Mills
