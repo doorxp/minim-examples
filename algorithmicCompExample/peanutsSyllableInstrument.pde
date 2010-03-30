@@ -91,7 +91,7 @@ class PeanutsSyllableInstrument implements Instrument
     // turn off the upDown ADSR.  This should fall to zero at the right
     // time, but it's best practice to turn it off.
     upDown.noteOff();
-        // turn off adsr, which cause the release to begin
+    // turn off adsr, which cause the release to begin
     adsr.noteOff();
     // after the release is over, unpatch from the out
     adsr.unpatchAfterRelease( out );
