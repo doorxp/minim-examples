@@ -13,13 +13,14 @@ void setup()
   size(512, 200, P2D);
 
   minim = new Minim(this);
-  out = minim.getLineOut(Minim.MONO, 1024);
-  myGranNote = new ToneInstrument( 587.3f, 0.9, out);
+  out = minim.getLineOut(Minim.MONO, 2048);
+  myGranNote = new ToneInstrument( 587.3f, 0.33, out);
   out.playNote(0.5, 3.6, myGranNote );
-  myGranNote = new ToneInstrument( 415.3f, 0.45, out);
-  myGranNote2 = new ToneInstrument( 415.3f, 0.45, out);
-  out.playNote(4.5, 3.6, myGranNote );
-  out.playNote(4.55, 3.6, myGranNote2 );
+  out.pauseNotes();
+  out.playNote( 4.5, 3.6, new ToneInstrument( 415.3f, 0.33, out) );
+  out.playNote( 4.51, 3.6, new ToneInstrument( 624.3f, 0.33, out) );
+  out.playNote( 4.52, 3.6, new ToneInstrument( 830.3f, 0.33, out) );
+  out.resumeNotes();
 }
 
 void draw()
