@@ -17,13 +17,13 @@ AudioOutput out;
 // setup is run once at the beginning
 void setup()
 {
+  // initialize the drawing window
+  size( 512, 200, P2D );
+
   // initialize the minim and out objects
   minim = new Minim( this );
   out = minim.getLineOut( Minim.MONO, 1024 );
   
-  // initialize the drawing window
-  size( 512, 200, P2D );
-
   // initialize the myNote object as a ToneInstrument
   ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );
   // play a note with the myNote object
