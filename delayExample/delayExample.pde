@@ -26,9 +26,11 @@ void setup()
 
   
   // initialize myDelay1 with continual feedback and no audio passthrough
-  myDelay1 = new Delay( 0.6, 0.9, true, false);
-  // create the tone that will be used
-  Oscil myTone = new Oscil( 245.0, 0.3, Waves.saw( 13 ) );
+  myDelay1 = new Delay( 0.6, 0.9, true, false );
+  // create the Blip that will be used
+  Oscil myBlip = new Oscil( 245.0, 0.3, Waves.saw( 15 ) );
+  Multiplier myInverter = new Multiplier( -1.0 );
+  Multiplier myPass = new Multiplier( 1.0 );
   
   // create an LFO to be used for an amplitude envelope
   Oscil myLFO = new Oscil( 0.5, 0.3, Waves.square( 0.005 ) );
@@ -41,23 +43,34 @@ void setup()
   
   // patch everything together
   // the LFO is patched into a summer along with a constant value
-  // and that sum is used to drive the amplitude of myTone
+  // and that sum is used to drive the amplitude of myBlip
   baseAmp.patch( ampSum );
   myLFO.patch( ampSum );
-  ampSum.patch( myTone.amplitude );
+  ampSum.patch( myBlip.amplitude );
+  minim.debugOn();
 
   // PROBLEM WITH REVERSING THE NEXT TWO PATCH LINES.  
-  // AS IS, I GET THE TONE, BUT REVERSED,
-  // I DON"T GET THE TONE.  FEH!
+  // WITH THE DELAYED VERSION PATCHED FIRST,  I GET THE Blip,
+  // BUT WITH THE ORIGINAL VERSION PATCHED FIRST, I DON"T GET THE Blip
+  // UNLESS I PASS IT THROUGH SOMETHING ELSE FIRST. FEH!
 
-  // the tone is patched through the delay into the sum.
-  myTone.patch( myDelay1 ).patch( sum );
+  // TO CHECK IF THE ORIGINAL TONE IS GOING THROUGH, MOVE THE MOUSE TO THE
+  // TOP OF THE PROCESSING WINDOW, WHICH SETS FEEDBACKFACTOR TO SOMETHING LOW.
+  
+  // the Blip is also patched directly into the sum
+  //b m xmyBlip.patch( myInverter ).patch( sum );
+ // myBlip.patch( myPass ).patch( sum );
+ 
+  myBlip.patch( sum );
+  
+ // the Blip is patched through the delay into the sum.
+  myBlip.patch( myDelay1 ).patch( sum );
 
-  // the tone is also patched directly into the sum
-  myTone.patch( sum );
 
   // patch the sum into the output
   sum.patch( out );
+
+  minim.debugOff();
 }
 
 void draw()
