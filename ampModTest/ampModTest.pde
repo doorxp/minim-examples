@@ -22,8 +22,9 @@ void setup()
   waves = new ModInstrument[4];
   
   waves[0] = new ModInstrument( Waves.SINE );
-  waves[1] = new ModInstrument( Waves.SAW );
-  waves[2] = new ModInstrument( Waves.SQUARE );
+  // generating a phazer to ramp the amplitude down.
+  waves[1] = new ModInstrument( WavetableGenerator.gen7( 2, new float[] { 1, 0 }, new int[] { 2 } ) );
+  waves[2] = new ModInstrument( WavetableGenerator.gen7( 4096, new float[] { 1, 1, 0, 0 }, new int[] { 2036, 24, 2036 } ) );
   waves[3] = new ModInstrument( Waves.TRIANGLE );
 
   currentWave = 0;

@@ -8,7 +8,8 @@ class BrapInstrument implements Instrument
   Oscil toneOsc, fmOsc;
   ADSR  adsr;
   Noise pinkNoise;
-  Summer sum;
+  Constant fmConstant;
+  Summer sum, fmSummer;
   GranulateSteady chopper;
   AudioOutput out;
   
@@ -23,6 +24,9 @@ class BrapInstrument implements Instrument
     toneOsc = new Oscil( toneFreq, amp, Waves.TRIANGLE );
     // a little frequency modulation for added harmonics never hurt anyone, right?
     fmOsc = new Oscil( toneFreq/2.0, toneFreq/2.0, Waves.SAW );
+    fmConstant = new Constant( toneFreq );
+    fmSummer = new Summer();
+    
     pinkNoise = new Noise( amp/3.0, Noise.Tint.PINK);
     adsr = new ADSR( 1.0, 0.003, 0.003, 1.0, 0.003 );
     chopper = new GranulateSteady( onTime, offTime, 0.0025 );
@@ -30,7 +34,10 @@ class BrapInstrument implements Instrument
     
     // patch everything together up to the final output 
     // put some freq modulation on the tone
-    fmOsc.patch( toneOsc.frequencyModulation );
+    fmOsc.patch( fmSummer );
+    fmConstant.patch( fmSummer );
+    fmSummer.patch( toneOsc.frequency ); 
+    
     // put both the tone and the noise into the summer
     toneOsc.patch( sum );
     pinkNoise.patch( sum );

@@ -29,13 +29,22 @@ void setup()
   myDelay1 = new Delay( 0.6, 0.9, true, false);
   // create the tone that will be used
   Oscil myTone = new Oscil( 245.0, 0.3, Waves.saw( 13 ) );
+  
   // create an LFO to be used for an amplitude envelope
   Oscil myLFO = new Oscil( 0.5, 0.3, Waves.square( 0.005 ) );
+  // our LFO will operate on a base amplitude
+  Constant baseAmp = new Constant(0.3);
+  // we get the final amplitude by summing the two
+  Summer ampSum = new Summer();
+  
   Summer sum = new Summer();
   
   // patch everything together
-  // the LFO is patched into the amplitude modulation of the Tone  
-  myLFO.patch( myTone.amplitudeModulation );
+  // the LFO is patched into a summer along with a constant value
+  // and that sum is used to drive the amplitude of myTone
+  baseAmp.patch( ampSum );
+  myLFO.patch( ampSum );
+  ampSum.patch( myTone.amplitude );
 
   // PROBLEM WITH REVERSING THE NEXT TWO PATCH LINES.  
   // AS IS, I GET THE TONE, BUT REVERSED,

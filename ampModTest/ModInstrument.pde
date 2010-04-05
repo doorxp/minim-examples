@@ -6,11 +6,11 @@ class ModInstrument implements Instrument
   
   ModInstrument( Wavetable wavetable )
   {
-    wave = new Oscil( 220.f, 1.f, Waves.SINE );
+    wave = new Oscil( 220.f, 0.5, Waves.SINE );
     mod = new Oscil( 1.f, 1.f, wavetable );
     amp = new Multiplier(1.f);
     
-    mod.patch( wave.amplitudeModulation );
+    mod.patch( wave.amplitude );
     wave.patch( amp );
   }
   

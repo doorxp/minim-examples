@@ -25,9 +25,9 @@ class ToneInstrument implements Instrument
   // every instrument must have a noteOn( float ) method
   void noteOn( float dur )
   {
-    // reset the phase of sineOsc and LFO so that we don't get clicks when starting the note
-    sineOsc.resetPhase();
-    LFO.resetPhase();
+    // reset sineOsc and LFO so that we don't get clicks when starting the note
+    sineOsc.reset();
+    LFO.reset();
     // and patch to the output
     sineOsc.patch( out );
   }

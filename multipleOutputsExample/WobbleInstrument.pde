@@ -6,6 +6,10 @@ class WobbleInstrument implements Instrument
   Oscil sine1, sine2, LFO;
   // a gain that will be applied to the LFO before it is used for frequency modulation
   Gain  gainLFO;
+  // the center frequency around which the LFO will modulate the frequency of sine2
+  Constant LFOfreq;
+  // a Summer to add together the LFO center frequency with the modulation amount
+  Summer LFOsum;
   AudioOutput out;
   
   WobbleInstrument(float frequency, float amplitude, float lFOFreq, AudioOutput output)
@@ -17,11 +21,18 @@ class WobbleInstrument implements Instrument
     // to get the second oscillator to have a large frequency wobble, we need to increase the
     // gain of the LFO a lot.
     gainLFO = new Gain(60.0);
+    // our center frequency is the same as the frequency of sine2
+    LFOfreq = new Constant( frequency * 2.0 );
+    LFOsum = new Summer();
  
     // control the amplitude of sine1
     LFO.patch( sine1.amplitude );
-    // and the frequency modulation of sine2
-    LFO.patch(gainLFO).patch( sine2.frequencyModulation );
+    // LFO also goes to the LFOsum
+    LFO.patch(gainLFO).patch( LFOsum );
+    // along with the center frequency
+    LFOfreq.patch( LFOsum );
+    // and then the sum into the frequency of sine2
+    LFOsum.patch( sine2.frequency );
   }
   
   void noteOn(float dur)
