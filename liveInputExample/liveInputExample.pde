@@ -1,37 +1,34 @@
-/* oscilExample
-   is an example of using the Oscil UGen inside an instrument.
-
-   author: Anderson Mills
-   Anderson Mills's work was supported by numediart (www.numediart.org)
+/* liveInputExample
+   is an example of using the LiveInput UGen to patch the input from your computer (usually microphone) to the output.
+   
+   author: Damien Di Fede
 */
 
-// import everything necessary to make sound.
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
-// create all of the variables that will need to be accessed in
-// more than one methods (setup(), draw(), stop()).
 Minim minim;
 AudioOutput out;
+LiveInput in;
 
-// setup is run once at the beginning
 void setup()
 {
   // initialize the drawing window
-  size( 512, 200, P2D );
-
-  // initialize the minim and out objects
-  minim = new Minim( this );
-  out = minim.getLineOut( Minim.MONO, 1024 );
+  size(512, 200);
   
-  // initialize the myNote object as a ToneInstrument
-  ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );
-  // play a note with the myNote object
-  out.playNote( 0.5, 2.6, myNote );
-  // give a new note value to myNote
-  myNote = new ToneInstrument( 415.3f, 0.9, out );
-  // play another note with the myNote object
-  out.playNote(3.5, 2.6, myNote );
+  // initialize the minim and out objects
+  minim = new Minim(this);
+  out = minim.getLineOut();
+  
+  // construct a LiveInput by giving it an InputStream from minim.
+  // we ask for an input with the same audio properties as the output.
+  in = new LiveInput( minim.getInputStream(out.getFormat().getChannels(), out.bufferSize(), out.sampleRate(), out.getFormat().getSampleSizeInBits()) );
+  
+  // create granulate UGen so we can hear the input being modfied before it goes to the output
+  GranulateSteady grain = new GranulateSteady();
+  
+  // patch the input through the grain effect to the output
+  in.patch(grain).patch(out);
 }
 
 // draw is run many times
@@ -56,6 +53,8 @@ void draw()
 // stop is run when the user presses stop
 void stop()
 {
+  // close the LiveInput
+  in.close();
   // close the AudioOutput
   out.close();
   // stop the minim object
@@ -63,3 +62,4 @@ void stop()
   // stop the processing object
   super.stop();
 }
+

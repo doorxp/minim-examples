@@ -1,20 +1,18 @@
-/* oscilExample
-   is an example of using the Oscil UGen inside an instrument.
+/* multipleOutputsExample
 
-   author: Anderson Mills
-   Anderson Mills's work was supported by numediart (www.numediart.org)
+   this is an example of how a single UGen can be patched to multiple things
+   in order to control them simultaneously.
+   
+   author: Damien Di Fede
 */
 
-// import everything necessary to make sound.
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
-// create all of the variables that will need to be accessed in
-// more than one methods (setup(), draw(), stop()).
 Minim minim;
 AudioOutput out;
+WobbleInstrument myWobble;
 
-// setup is run once at the beginning
 void setup()
 {
   // initialize the drawing window
@@ -22,16 +20,9 @@ void setup()
 
   // initialize the minim and out objects
   minim = new Minim( this );
-  out = minim.getLineOut( Minim.MONO, 1024 );
-  
-  // initialize the myNote object as a ToneInstrument
-  ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );
-  // play a note with the myNote object
-  out.playNote( 0.5, 2.6, myNote );
-  // give a new note value to myNote
-  myNote = new ToneInstrument( 415.3f, 0.9, out );
-  // play another note with the myNote object
-  out.playNote(3.5, 2.6, myNote );
+  out = minim.getLineOut( Minim.MONO );
+
+  out.playNote(0.5, 6.1, new WobbleInstrument( 330f, 0.3, 1.0, out) );
 }
 
 // draw is run many times

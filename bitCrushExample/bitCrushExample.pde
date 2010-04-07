@@ -1,20 +1,9 @@
-/* oscilExample
-   is an example of using the Oscil UGen inside an instrument.
-
-   author: Anderson Mills
-   Anderson Mills's work was supported by numediart (www.numediart.org)
-*/
-
-// import everything necessary to make sound.
 import ddf.minim.*;
 import ddf.minim.ugens.*;
 
-// create all of the variables that will need to be accessed in
-// more than one methods (setup(), draw(), stop()).
 Minim minim;
 AudioOutput out;
 
-// setup is run once at the beginning
 void setup()
 {
   // initialize the drawing window
@@ -22,16 +11,18 @@ void setup()
 
   // initialize the minim and out objects
   minim = new Minim( this );
-  out = minim.getLineOut( Minim.MONO, 1024 );
+  out = minim.getLineOut( Minim.MONO );
   
-  // initialize the myNote object as a ToneInstrument
-  ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );
-  // play a note with the myNote object
-  out.playNote( 0.5, 2.6, myNote );
-  // give a new note value to myNote
-  myNote = new ToneInstrument( 415.3f, 0.9, out );
-  // play another note with the myNote object
-  out.playNote(3.5, 2.6, myNote );
+  // queue up some notes using the Crush Instrument
+  // its arguments are sine wave frequency, amplitude, and bit crush resolution
+  out.playNote(0.5, 2.6, new CrushInstrument( 392.0, 0.5, 16.0, out) );
+  out.playNote(3.5, 2.6, new CrushInstrument( 370.0, 0.5, 4.0, out) );
+  out.playNote(6.5, 2.6, new CrushInstrument( 261.6, 0.5, 3.0, out) );
+  out.playNote(9.5, 2.6, new CrushInstrument( 247.0, 0.5, 2.0, out) );
+  
+  // queue up a Crushing Instrument, which will change the bit resolution over time
+  // its arguments are sine frequency, amplitude, bit crush resolution start and end
+  out.playNote(12.5, 10.0, new CrushingInstrument( 191.0, 0.5, 5.2, 1.0, out) );
 }
 
 // draw is run many times
@@ -63,3 +54,4 @@ void stop()
   // stop the processing object
   super.stop();
 }
+
