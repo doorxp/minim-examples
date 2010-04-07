@@ -14,7 +14,7 @@ import ddf.minim.ugens.*;
 // one way to initialize the minim object.
 Minim minim = new Minim( this );
 // one way to initialize the output object.
-AudioOutput out = minim.getLineOut( );
+AudioOutput out = minim.getLineOut( Minim.MONO, 2048 );
 // one way to initialize the oscillator UGen.
 Oscil osc = new Oscil( 349.23, 0.8 );
 

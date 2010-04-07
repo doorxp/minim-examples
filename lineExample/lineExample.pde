@@ -15,8 +15,7 @@ AudioOutput out;
 
 // setup is run once at the beginning
 void setup()
-{
-  
+{ 
   // initialize the drawing window
   size( 512, 200, P2D );
   

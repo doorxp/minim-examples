@@ -22,7 +22,7 @@ void setup()
 
   // initialize the minim and out objects
   minim = new Minim( this );
-  out = minim.getLineOut( Minim.MONO, 1024 );
+  out = minim.getLineOut( Minim.MONO, 2048 );
   
   // initialize the myNote object as a ToneInstrument
   ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );

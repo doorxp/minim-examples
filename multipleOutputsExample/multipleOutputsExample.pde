@@ -3,7 +3,8 @@
    this is an example of how a single UGen can be patched to multiple things
    in order to control them simultaneously.
    
-   author: Damien Di Fede
+   author: Damien Di Fede, Anderson Mills
+   Anderson Mills's work was supported by numediart (www.numediart.org) 
 */
 
 import ddf.minim.*;
