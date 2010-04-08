@@ -1,7 +1,8 @@
 /* waveShaperExample
    is an example of using the WaveShaper UGen inside an instrument.
    
-   author: Damien Di Fede
+   author: Damien Di Fede, Anderson Mills
+   Anderson Mills's work was supported by numediart (www.numediart.org).
 */
 
 import ddf.minim.*;
