@@ -21,7 +21,7 @@ class WaveShaperInstrument implements Instrument
     // one of the "shaper =" lines to hear the different waves.
     // The first is a modified saw wave.  We made this while we were experimenting
     // with the WaveShaper and liked it, so it remains.
-    Wavetable shapeA = Waves.SAW;
+    Wavetable shapeA = new Wavetable( Waves.SAW );
     shapeA.set(0, -1.0);
     shapeA.set(shapeA.size()-1, 1.0);
     // The second argument in WaveShaper
