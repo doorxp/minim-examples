@@ -44,7 +44,7 @@ void setup()
   //filt = new HighPassSP(400, out.sampleRate());  // really annoying!
   //filt = new NotchFilter(400, 100, out.sampleRate());
 
-  // create a summer, then put add a constant to an oscillating value using it
+  // create a summer, then add a constant to an oscillating value using it
   Summer sum = new Summer();
   cutoff = new Constant(1000);
   cutOsc = new Oscil(1, 800, Waves.SINE);
