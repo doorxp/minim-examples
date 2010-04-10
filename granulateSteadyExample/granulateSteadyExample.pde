@@ -84,9 +84,9 @@ void setup()
 // draw is run many times
 void draw()
 {
-  // erase the window to black
+  // erase the window to grey
   background( 192 );
-  // draw using a white stroke
+  // draw using a black stroke
   stroke( 0 );
   // draw the waveforms
   for( int i = 0; i < out.bufferSize() - 1; i++ )

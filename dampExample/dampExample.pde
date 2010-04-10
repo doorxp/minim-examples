@@ -17,12 +17,12 @@ AudioOutput out;
 // setup is run once at the beginning
 void setup()
 {
+  // initialize the drawing window
+  size( 512, 200, P2D );
+  
   // initialize the minim and out objects
   minim = new Minim( this );
   out = minim.getLineOut( Minim.MONO, 2048 );
-  
-  // initialize the drawing window
-  size( 512, 200, P2D );
   
   // pause time when adding a bunch of notes at once
   out.pauseNotes();

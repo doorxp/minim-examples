@@ -20,6 +20,9 @@ AudioOutput out;
 // setup is run once at the beginning
 void setup()
 {
+// initialize the drawing window
+  size(300, 200, P2D);
+  
   // initialize the minim and out objects
   minim = new Minim(this);
   out = minim.getLineOut();
@@ -30,9 +33,6 @@ void setup()
   Oscil cutOsc;
   Constant cutoff;
 
-  // initialize the drawing window
-  size(300, 200, P2D);
-  
   // initialize the oscillator 
   // (a sawtooth wave has energy across the spectrum)
   osc = new Oscil(500, 0.2, Waves.SAW);

@@ -1,5 +1,5 @@
-/* oscilExample
-   is an example of using the Oscil UGen inside an instrument.
+/* oscilEnvExample
+   is an example of using the Oscil UGen as an amplitude envelope for a note.
 
    author: Anderson Mills
    Anderson Mills's work was supported by numediart (www.numediart.org)
@@ -23,24 +23,21 @@ void setup()
   // initialize the minim and out objects
   minim = new Minim( this );
   out = minim.getLineOut( Minim.MONO, 2048 );
-  
-  // initialize the myNote object as a ToneInstrument
-  ToneInstrument myNote = new ToneInstrument( 587.3f, 0.9, out );
-  // play a note with the myNote object
-  out.playNote( 0.5, 2.6, myNote );
-  // give a new note value to myNote
-  myNote = new ToneInstrument( 415.3f, 0.9, out );
-  // play another note with the myNote object
-  out.playNote(3.5, 2.6, myNote );
+
+  // play several notes of different base frequencies and lengths
+  // using the BumpyInstrument and its envelope
+  out.playNote( 0.5, 2.6, new BumpyInstrument( "A4", 0.5, out ) );
+  out.playNote( 2.5, 1.6, new BumpyInstrument( "F4", 0.5, out ) );
+  out.playNote( 3.6, 0.9, new BumpyInstrument( "D4", 0.5, out ) );
 }
 
 // draw is run many times
 void draw()
 {
-  // erase the window to black
-  background( 0 );
-  // draw using a white stroke
-  stroke( 255 );
+  // erase the window to bluishwhite
+  background( 240, 240, 255);
+  // draw using a dark red stroke
+  stroke( 128, 64, 64 );
   // draw the waveforms
   for( int i = 0; i < out.bufferSize() - 1; i++ )
   {
@@ -63,3 +60,4 @@ void stop()
   // stop the processing object
   super.stop();
 }
+
