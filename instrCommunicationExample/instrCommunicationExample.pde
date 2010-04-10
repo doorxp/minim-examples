@@ -17,6 +17,7 @@ import ddf.minim.ugens.*;
 // more than one methods (setup(), draw(), stop()).
 Minim minim;
 AudioOutput out;
+FollowInstrument myFollow;
 
 // setup is run once at the beginning
 void setup()
@@ -30,7 +31,7 @@ void setup()
   
   // Here, we need to be able to give a reference to the Follow instrument to the 
   // leader instrument, so myFollow cannot be simply new-ed in the playNote call.
-  FollowInstrument myFollow = new FollowInstrument( 0.5, 87.3, 1.0, 0.150, out ); 
+  myFollow = new FollowInstrument( 0.5, 87.3, 1.0, 0.150, out ); 
   // and play myFollow for 10.6 seconds.
   out.playNote( 0.0, 10.6, myFollow );
   
@@ -52,10 +53,12 @@ void setup()
 // draw is run many times
 void draw()
 {
-  // erase the window to black
-  background( 0 );
-  // draw using a white stroke
-  stroke( 255 );
+  // erase the window to a shift between blue and red associated with the 
+  // frequency of the FollowInstrument
+  float myBG = map ( myFollow.getCurrentFrequency(), 150, 500, 0, 255 );
+  background( myBG, 0, 255 - myBG );
+  // draw using a green stroke
+  stroke( 0, 255, 0 );
   // draw the waveforms
   for( int i = 0; i < out.bufferSize() - 1; i++ )
   {
