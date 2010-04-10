@@ -27,7 +27,7 @@ class PanInstrument implements Instrument
         
     // patch everything together up to the final output
     sineOsc.patch( pan );
-    LFO.patch( pan.balance );
+    LFO.patch( pan.pan );
   }
   
   // every instrument must have a noteOn( float ) method
