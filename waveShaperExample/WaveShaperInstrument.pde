@@ -41,7 +41,9 @@ class WaveShaperInstrument implements Instrument
    
     // patch the line into the mapAmplitude of the WaveShaper
     shaperAmountLine.patch( shaper.mapAmplitude );
-    // patch the reciprocal of the line into the outAmplitud
+    // Patch the reciprocal of the line into the outAmplitude.
+    // Since the line goes from 1 to 25, the reciprocal goes from 1/1 to 1/25.
+    // This creates a pretty good approximation of a drum envelope.
     shaperAmountLine.patch( reciprocal ).patch( shaper.outAmplitude );
     sineOsc.patch( shaper );
   }
