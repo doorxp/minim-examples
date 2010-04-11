@@ -23,14 +23,11 @@ void setup()
   // initialize the minim and out objects
   minim = new Minim(this);
   out = minim.getLineOut( Minim.MONO, 2048 );
-
   
   // initialize myDelay1 with continual feedback and no audio passthrough
   myDelay1 = new Delay( 0.6, 0.9, true, false );
   // create the Blip that will be used
   Oscil myBlip = new Oscil( 245.0, 0.3, Waves.saw( 15 ) );
-  Multiplier myInverter = new Multiplier( -1.0 );
-  Multiplier myPass = new Multiplier( 1.0 );
   
   // create an LFO to be used for an amplitude envelope
   Oscil myLFO = new Oscil( 0.5, 0.3, Waves.square( 0.005 ) );
@@ -47,60 +44,54 @@ void setup()
   baseAmp.patch( ampSum );
   myLFO.patch( ampSum );
   ampSum.patch( myBlip.amplitude );
-  minim.debugOn();
 
-  // PROBLEM WITH REVERSING THE NEXT TWO PATCH LINES.  
-  // WITH THE DELAYED VERSION PATCHED FIRST,  I GET THE Blip,
-  // BUT WITH THE ORIGINAL VERSION PATCHED FIRST, I DON"T GET THE Blip
-  // UNLESS I PASS IT THROUGH SOMETHING ELSE FIRST. FEH!
-
-  // TO CHECK IF THE ORIGINAL TONE IS GOING THROUGH, MOVE THE MOUSE TO THE
-  // TOP OF THE PROCESSING WINDOW, WHICH SETS FEEDBACKFACTOR TO SOMETHING LOW.
-  
-  // the Blip is also patched directly into the sum
-  //b m xmyBlip.patch( myInverter ).patch( sum );
- // myBlip.patch( myPass ).patch( sum );
- 
+  // the Blip is patched directly into the sum 
   myBlip.patch( sum );
   
- // the Blip is patched through the delay into the sum.
+ // and the Blip is patched through the delay into the sum.
   myBlip.patch( myDelay1 ).patch( sum );
-
 
   // patch the sum into the output
   sum.patch( out );
-
-  minim.debugOff();
 }
 
+// draw is run many times
 void draw()
 {
-  background(0);
-  stroke(255);
+  // erase the window to dark grey
+  background( 64 );
+  // draw using a light gray stroke
+  stroke( 192 );
   // draw the waveforms
-  for(int i = 0; i < out.bufferSize() - 1; i++)
+  for( int i = 0; i < out.bufferSize() - 1; i++ )
   {
-    float x1 = map(i, 0, out.bufferSize(), 0, width);
-    float x2 = map(i+1, 0, out.bufferSize(), 0, width);
-    line(x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
-    line(x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
-  }
+    // find the x position of each buffer value
+    float x1  =  map( i, 0, out.bufferSize(), 0, width );
+    float x2  =  map( i+1, 0, out.bufferSize(), 0, width );
+    // draw a line from one buffer position to the next for both channels
+    line( x1, 50 + out.left.get(i)*50, x2, 50 + out.left.get(i+1)*50);
+    line( x1, 150 + out.right.get(i)*50, x2, 150 + out.right.get(i+1)*50);
+  }  
 }
 
+// when the mouse is moved, change the delay parameters
 void mouseMoved()
 {
+  // set the delay time by the horizontal location
   float delayTime = map( mouseX, 0, width, 0.0001, 0.5 );
   myDelay1.setDelTime( delayTime );
+  // set the feedback factor by the vertical location
   float feedbackFactor = map( mouseY, 0, height, 0.0, 0.99 );
   myDelay1.setDelAmp( feedbackFactor );
 }
 
+// stop is run when the user presses stop
 void stop()
 {
-  // should close the Input so it can close its stream
+  // close the AudioOutput
   out.close();
+  // stop the minim object
   minim.stop();
-  
+  // stop the processing object
   super.stop();
 }
-
