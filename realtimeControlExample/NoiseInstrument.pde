@@ -9,7 +9,7 @@ class NoiseInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
   Noise myNoise;
-  Gain  gain;
+  Multiplier multiply;
   AudioOutput out;
   BandPass filt1, filt2;
   Summer sum; 
@@ -30,7 +30,7 @@ class NoiseInstrument implements Instrument
     
     // create new instances of any UGen objects
     myNoise = new Noise( amplitude, Noise.Tint.WHITE );
-    gain = new Gain( 0 );
+    multiply = new Multiplier( 0 );
     filt1 = new BandPass( freq1, bandWidth1, out.sampleRate() );
     filt2 = new BandPass( freq2(), bandWidth2(), out.sampleRate() );
     sum = new Summer();
@@ -38,23 +38,23 @@ class NoiseInstrument implements Instrument
     // patch everything (including the out this time)
     myNoise.patch( filt1 ).patch( sum );
     myNoise.patch( filt2 ).patch( sum );
-    sum.patch( gain );
+    sum.patch( multiply );
   }
   
   // every instrument must have a noteOn( float ) method
   void noteOn( float dur )
   {
-    // set the gain to 1 to turn on the note
-    gain.setValue( 1 );
-    gain.patch( out );
+    // set the multiply to 1 to turn on the note
+    multiply.setValue( 1 );
+    multiply.patch( out );
   }
   
   // every instrument must have a noteOff() method
   void noteOff()
   {
-    // set the gain to 0 to turn off the note 
-    gain.setValue( 0 );
-    gain.unpatch( out );
+    // set the multiply to 0 to turn off the note 
+    multiply.setValue( 0 );
+    multiply.unpatch( out );
   }
   
   // this is a helper method only used internally to find the second filter

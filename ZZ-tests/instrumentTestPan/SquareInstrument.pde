@@ -3,7 +3,7 @@ class SquareInstrument implements Instrument
   Oscil Osc1, LFO,LFOfreqMod;
   Constant LFOfreq;
   Summer   LFOSum;
-  Gain  gain;
+  Multiplier  multiply;
   AudioOutput out;
   Pan pan;
   
@@ -18,25 +18,25 @@ class SquareInstrument implements Instrument
     LFOSum = new Summer();
 
     pan = new Pan(1);
-    gain = new Gain(0);
+    multiply = new Multiplier(0);
     LFO.patch(pan.balance);
    
     LFOfreq.patch( LFOSum );
     LFOfreqMod.patch( LFOSum );
     LFOSum.patch( LFO.frequency );
 
-    Osc1.patch(gain).patch(pan).patch(out);
+    Osc1.patch(multiply).patch(pan).patch(out);
   }
  
   void noteOn(float dur)
   {
     //println("Note on!");
-    gain.setValue(1);
+    multiply.setValue(1);
   }
   
   void noteOff()
   {
     //println("Note off!");
-    gain.setValue(0);
+    multiply.setValue(0);
   }
 }

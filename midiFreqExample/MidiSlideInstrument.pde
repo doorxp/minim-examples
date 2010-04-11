@@ -7,14 +7,14 @@
 class MidiSlideInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
-  Gain  gate;
+  Multiplier  gate;
   Line  freqControl;
   
   // constructor for this instrument
   MidiSlideInstrument(float begNote, float endNote, float amp)
   {
     // create new instances of the UGens necessary
-    gate = new Gain( 0 );
+    gate = new Multiplier( 0 );
     Oscil tone = new Oscil( begNote, amp, Waves.TRIANGLE );
     freqControl = new Line( 1.0, begNote, endNote );
     Midi2Hz midi2Hz = new Midi2Hz();

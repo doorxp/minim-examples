@@ -8,7 +8,7 @@ class NumberInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
   Oscil sineOsc, lFOOsc;
-  Gain  gainGate;
+  Multiplier  multiply;
   AudioOutput out;
   int iNote;
   float amp;
@@ -25,10 +25,10 @@ class NumberInstrument implements Instrument
     
     // create new instances of any UGen objects as necessary
     sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
-    gainGate = new Gain(0);
+    multiply = new Multiplier(0);
 
     // patch everything together up to the final output
-    sineOsc.patch(gainGate);
+    sineOsc.patch(multiply);
   }
   
   // every instrument must have a noteOn( float ) method
@@ -37,9 +37,9 @@ class NumberInstrument implements Instrument
     // want to print information about this instrument
     println("Instron number " + iNote + "   amp = " + amp + "   freq = " + freq );
     // turn on the gain
-    gainGate.setValue(1.0);
+    multiply.setValue(1.0);
     // and patch to the output
-    gainGate.patch(out);
+    multiply.patch(out);
   }
   
   // every instrument must have a noteOff method
@@ -48,8 +48,8 @@ class NumberInstrument implements Instrument
     // print that we're turning this off
     println("Instroff number " + iNote );
     // turn the gain to 0
-    gainGate.setValue(0);
+    multiply.setValue(0);
     // and unpatch it
-    gainGate.unpatch( out );
+    multiply.unpatch( out );
   }
 }

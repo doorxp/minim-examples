@@ -8,7 +8,6 @@ class BumpyInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
   Oscil toneOsc, envOsc;
-  Gain  gainGate;
   AudioOutput out;
 
   // constructor for this instrument  

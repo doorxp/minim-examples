@@ -1,7 +1,7 @@
 class SquareInstrument implements Instrument
 {
   Oscil Osc;
-  Gain  gain;
+  Multiplier  multiply;
   AudioOutput out;
 WaveShaper disto;
 Line distchange;
@@ -10,7 +10,7 @@ Line distchange;
   {
     out = output;
     Osc = new Oscil(frequency, amplitude,Waves.SINE);
-    gain = new Gain(0);
+    multiply = new Multiplier(0);
     
 disto = new WaveShaper(WaveShaper.TruncSine(), 1);
 
@@ -18,19 +18,19 @@ disto = new WaveShaper(WaveShaper.TruncSine(), 1);
    
 distchange.patch(disto.amount);
    
-    Osc.patch(disto).patch(gain).patch(out);
+    Osc.patch(disto).patch(multiply).patch(out);
   }
  
   void noteOn(float dur)
   {
     //println("Note on!");
-    gain.setValue(1);
+    multiply.setValue(1);
    distchange.activate();
   }
   
   void noteOff()
   {
     //println("Note off!");
-    gain.setValue(0);
+    multiply.setValue(0);
   }
 }

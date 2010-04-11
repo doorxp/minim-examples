@@ -1,7 +1,7 @@
 class SineInstrument implements Instrument
 {
   Oscil sineOsc;
-  Gain  gain;
+  Multiplier  multiply;
   ADSR  adsr;
   AudioOutput out;
   
@@ -9,7 +9,7 @@ class SineInstrument implements Instrument
   {
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.TRIANGLE);
-    gain = new Gain(0);
+    multiply = new Multiplier(0);
     adsr = new ADSR(0.5, 0.01, 0.05, 0.5, 0.5);
     sineOsc.patch(adsr).patch(out);
   }
@@ -17,14 +17,14 @@ class SineInstrument implements Instrument
   void noteOn(float dur)
   {
     //println("Note on!");
-    gain.setValue(1);
+    multiply.setValue(1);
     adsr.noteOn();
   }
   
   void noteOff()
   {
     //println("Note off!");
-    gain.setValue(0);
+    multiply.setValue(0);
     adsr.noteOff();
   }
 }

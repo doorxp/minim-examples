@@ -1,16 +1,16 @@
 class ToneInstrument implements Instrument
 {
   Oscil sineOsc, lFOOsc;
-  Gain  gainGate;
+  Multiplier  multiplyGate;
   AudioOutput out;
   
   ToneInstrument(String note, float amplitude, AudioOutput output)
   {
     out = output;
     sineOsc = new Oscil( Frequency.ofPitch( note ), amplitude, Waves.TRIANGLE );
-    gainGate = new Gain(0);
+    multiplyGate = new Multiplier(0);
     println("Instrument: about to patch");
-    sineOsc.patch(gainGate);
+    sineOsc.patch(multiplyGate);
     println("Instrument: patched");
   }
   
@@ -18,14 +18,14 @@ class ToneInstrument implements Instrument
   {
     println("Instron!");
     //sineOsc.setFrequency( 123.45 );
-    gainGate.setValue(1.0);
-    gainGate.patch(out);
+    multiplyGate.setValue(1.0);
+    multiplyGate.patch(out);
   }
   
   void noteOff()
   {
     println("Instroff!");
-    gainGate.setValue(0);
+    multiplyGate.setValue(0);
     
   }
   

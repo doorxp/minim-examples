@@ -7,14 +7,14 @@
 class SlideInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
-  Gain  gate;
+  Multiplier  gate;
   Line  freqControl;
   
   // constructor for this instrument
   SlideInstrument(float begFreq, float endFreq, float amp)
   {
     // create new instances of the UGens necessary
-    gate = new Gain( 0 );
+    gate = new Multiplier( 0 );
     Oscil tone = new Oscil( begFreq, amp, Waves.TRIANGLE );
     freqControl = new Line( 1.0, begFreq, endFreq );
     Balance right = new Balance( 1 );

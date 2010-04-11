@@ -4,7 +4,7 @@ class ToneInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
   Oscil sineOsc, lFOOsc;
-  Gain  gainGate;
+  Multiplier  multiplyGate;
   AudioOutput out;
   
   // constructors for this intsrument
@@ -15,29 +15,29 @@ class ToneInstrument implements Instrument
     
     // create new instances of any UGen objects as necessary
     sineOsc = new Oscil( frequency, amplitude, Waves.SINE );
-    gainGate = new Gain( 0 );
+    multiplyGate = new Multiplier( 0 );
     
     // patch everything together up to the final output
-    sineOsc.patch( gainGate );
+    sineOsc.patch( multiplyGate );
   }
   
   // every instrument must have a noteOn( float ) method
   void noteOn( float dur )
   {
-    // turn on the gain
-    gainGate.setValue( 1.0 );
+    // turn on the multiply
+    multiplyGate.setValue( 1.0 );
     // and patch to the output
-    gainGate.patch( out );
+    multiplyGate.patch( out );
   }
   
   // every instrument must have a noteOff() method
   void noteOff()
   {
-    // turn off the gain
-    gainGate.setValue( 0 );
+    // turn off the multiply
+    multiplyGate.setValue( 0 );
     // and unpatch the output 
     // this causes the entire instrument to stop calculating sampleframes
     // which is good when the instrument is no longer generating sound.
-    gainGate.unpatch( out );
+    multiplyGate.unpatch( out );
   }
 }

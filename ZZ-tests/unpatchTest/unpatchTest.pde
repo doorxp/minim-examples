@@ -25,8 +25,8 @@ void setup()
   float vol = 0.33;
   out.playNote( 0.00, 0.099, new ToneInstrument( "Fa#", vol, out) );
   out.playNote( 0.00, 0.15, new ToneInstrument( "Re 3", vol, out) );
-  out.playNote( 1.00, 0.452, new GainInstrument( 103, vol, out ) );
-  out.playNote( 1.00, 0.6, new GainInstrument( 100, vol, out ) );
+  out.playNote( 1.00, 0.452, new MultiplierInstrument( 103, vol, out ) );
+  out.playNote( 1.00, 0.6, new MultiplierInstrument( 100, vol, out ) );
   out.resumeNotes();
  }
 

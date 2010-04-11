@@ -11,7 +11,7 @@
 class DidgeSlideInstrument implements Instrument
 {
   Oscil tone;
-  Gain  gate;
+  Multiplier  gate;
   Line  lengthLine;
   Constant factor;
   Multiplier multiplier;
@@ -27,7 +27,7 @@ class DidgeSlideInstrument implements Instrument
     float begFreq = speedOfSound/(waveLengthDivisor*begLength);
     
     tone = new Oscil( begFreq, amp, Waves.triangle( 4 ) );
-    gate = new Gain(0);
+    gate = new Multiplier(0);
     factor = new Constant( speedOfSound/waveLengthDivisor );
     lengthLine = new Line( 1.0, begLength, endLength );
     multiplier = new Multiplier();

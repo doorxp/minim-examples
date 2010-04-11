@@ -1,7 +1,7 @@
 class WobbleInstrument implements Instrument
 {
   Oscil sineOsc, lFOOsc;
-  Gain  gainGate, gainLFO;
+  Multiplier  multiplyGate, multiplyLFO;
   AudioOutput out;
   
   WobbleInstrument(float frequency, float amplitude, float lFOFreq, AudioOutput output)
@@ -9,31 +9,31 @@ class WobbleInstrument implements Instrument
     out = output;
     sineOsc = new Oscil(frequency, amplitude, Waves.SINE);
     lFOOsc = new Oscil(lFOFreq/2.0, 1.0, Waves.SINE);
-    gainGate = new Gain(0);
-    gainLFO = new Gain(1);
-    //gainLFO.setSampleRate(out.sampleRate());
+    multiplyGate = new Multiplier(0);
+    multiplyLFO = new Multiplier(1);
+    //multiplyLFO.setSampleRate(out.sampleRate());
     println("WobbleInstrument: about to patch");
-    //sineOsc.patch(gain.audio).patch(out);
-    //gainLFO.printInputs();
-    lFOOsc.patch(gainLFO.amplitude);
-    //sineOsc.patch(gainGate.audio).patch(gainLFO.audio).patch(out);
+    //sineOsc.patch(multiply.audio).patch(out);
+    //multiplyLFO.printInputs();
+    lFOOsc.patch(multiplyLFO.amplitude);
+    //sineOsc.patch(multiplyGate.audio).patch(multiplyLFO.audio).patch(out);
     //lFOOsc.patch(sineOsc.frequencyModulation);
-    sineOsc.patch(gainGate).patch(gainLFO).patch(out);
-    //gainLFO.printInputs();
-    //lFOOsc.patch(gain.amplitude);
-    //lFOOsc.patch(gain.audio).patch(out);
+    sineOsc.patch(multiplyGate).patch(multiplyLFO).patch(out);
+    //multiplyLFO.printInputs();
+    //lFOOsc.patch(multiply.amplitude);
+    //lFOOsc.patch(multiply.audio).patch(out);
     println("WobbleInstrument: patched");
   }
   
   void noteOn(float dur)
   {
     println("wobble on!");
-    gainGate.setValue(0.5);
+    multiplyGate.setValue(0.5);
   }
   
   void noteOff()
   {
     println("wobble off!");
-    gainGate.setValue(0);
+    multiplyGate.setValue(0);
   }
 }

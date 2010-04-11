@@ -9,7 +9,7 @@ class NowNowInstrument implements Instrument
   ADSR  adsr;
   Summer sum;
   BitCrush crush;
-  Gain gainLo, gainHi;
+  Multiplier multiplyLo, multiplyHi;
   IIRFilter bpFilt1, bpFilt2;
   AudioOutput out;
   
@@ -48,15 +48,15 @@ class NowNowInstrument implements Instrument
     adsr = new ADSR( 0.5, 0.005, 0.01, 0.5, 0.2 );
     bpFilt1 = new BandPass( cf1, bw1, out.sampleRate() );
     bpFilt2 = new BandPass( cf2, bw2, out.sampleRate() );
-    gainLo = new Gain( 2*( 1 - high ) );
-    gainHi = new Gain( 2*high);
+    multiplyLo = new Multiplier( 2*( 1 - high ) );
+    multiplyHi = new Multiplier( 2*high);
     crush = new BitCrush( bitRes );
     sum = new Summer();
     
     // patch everything togethe up to the final output
     // basically the sawtooth oscilator goes through two filters
-    sineOsc.patch(bpFilt1).patch(gainLo).patch(sum);
-    sineOsc.patch(bpFilt2).patch(gainHi).patch(sum);
+    sineOsc.patch(bpFilt1).patch(multiplyLo).patch(sum);
+    sineOsc.patch(bpFilt2).patch(multiplyHi).patch(sum);
     // then the sum of those goes through bit crushing and into an ADSR
     sum.patch(crush).patch(adsr);
   }

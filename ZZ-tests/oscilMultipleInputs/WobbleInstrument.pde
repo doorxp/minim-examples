@@ -4,7 +4,7 @@ class WobbleInstrument implements Instrument
 {
   // create all variables that must be used throughout the class
   Oscil sineOsc, lFO1, lFO2, lFO3, lFO4;
-  Gain  gainGate, gainLFO;
+  Multiplier  multiplyGate, multiplyLFO;
   AudioOutput out;
   
   // constructors for this intsrument
@@ -23,8 +23,8 @@ class WobbleInstrument implements Instrument
     lFO2 = new Oscil( frequency/2.0, 1.0, Waves.SINE );  //amplitude
     lFO3 = new Oscil( frequency/3.0, 100.0, Waves.SINE );  //freqMod
     lFO4 = new Oscil( lFOFreq/4.0, 0.5, Waves.SINE ); //ampMod
-    gainGate = new Gain( 0 );
-    gainLFO = new Gain( 1 );
+    multiplyGate = new Multiplier( 0 );
+    multiplyLFO = new Multiplier( 1 );
     
     // patch the different LFOs into the different Oscil inputs
     lFO1.patch( sineOsc.frequency );
@@ -32,24 +32,24 @@ class WobbleInstrument implements Instrument
     lFO3.patch( sineOsc.frequencyModulation );
     lFO4.patch( sineOsc.amplitudeModulation );
     
-    // Patch the oscillator into the gainGate and then to the out.
+    // Patch the oscillator into the multiplyGate and then to the out.
     // The connection to the out here keeps the oscillators running even
     // when the note is off.  This produces an interesting "gated" effect
     // when using the mouse to turn the note on and off. 
-    sineOsc.patch( gainGate ).patch( out );
+    sineOsc.patch( multiplyGate ).patch( out );
   }
   
   // every instrument must have a noteOn( float ) method
   void noteOn( float dur )
   {
-    // turn on the gain
-    gainGate.setValue( 0.5 );
+    // turn on the multiply
+    multiplyGate.setValue( 0.5 );
   }
   
   // every instrument must have a noteOff() method
   void noteOff()
   {
-    // turn off the gain
-    gainGate.setValue( 0 );
+    // turn off the multiply
+    multiplyGate.setValue( 0 );
   }
 }

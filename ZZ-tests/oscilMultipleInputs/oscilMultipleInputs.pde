@@ -63,7 +63,7 @@ void draw()
 // run whenever the mouse is pressed
 void mousePressed()
 {
-  // turn on the note again
+  // turn on the note amultiply
   myWobble.noteOn(0.0);
   redAmount = 99.0;
 }
